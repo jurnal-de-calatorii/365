@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <title>Album 4</title>
+  <style>
+    body, html {
+      margin: 0; padding: 0;
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      position: relative;
+      color: #fff;
+      background: url('media/album4/Planificarea-unei-călătorii-de-neuitat-în-nouă-pași-simpli-unsplash-dariusz-sankowski-56725-1900.jpg') no-repeat center center fixed;
+      background-size: cover;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      text-align: center;
+      padding: 20px;
+      box-sizing: border-box;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 20px;
+      color: white;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-weight: 600;
+      font-size: 2em;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+    }
+
+    .back-link:hover {
+      color: #a0d1ff;
+    }
+
+    /* Container GIF */
+    .gif-container {
+      margin-bottom: 30px;
+      max-width: 300px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 15px;
+      border: 3px dashed #2196f3;
+      border-radius: 15px;
+      background-color: rgba(33, 150, 243, 0.2);
+      box-shadow: 0 0 15px #2196f3;
+      animation: pulse 3s infinite;
+    }
+    .gif-container img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 0 12px #64b5f6;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+      background-color: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .gallery img {
+      width: 250px;
+      height: auto;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: transform 0.2s;
+      box-shadow: 0 0 8px rgba(0,0,0,0.7);
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px rgba(0,123,255,0.8);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 10000;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,123,255,0.9);
+    }
+
+    .close-btn, .prev-btn, .next-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 2em;
+      cursor: pointer;
+      padding: 10px;
+      background-color: rgba(0,0,0,0.5);
+      border-radius: 50%;
+      user-select: none;
+    }
+
+    .close-btn {
+      top: 20px;
+      right: 20px;
+      transform: none;
+      font-size: 2.5em;
+      z-index: 10001;
+    }
+
+    .prev-btn {
+      left: 20px;
+      z-index: 10001;
+    }
+
+    .next-btn {
+      right: 20px;
+      z-index: 10001;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Album 4</h1>
+      <a href="index.html" class="back-link">⟵ Du-mă înapoi</a>
+    </header>
+
+    <main>
+      <section class="gif-container">
+        <img src="media/album4/162367.gif" alt="GIF animat" />
+      </section>
+
+      <section class="gallery">
+        <img src="media/album4/IMG_20250524_180015_edit_340756563119878.jpg" alt="Poză 1" />
+        <img src="media/album4/IMG_20250524_180020.jpg" alt="Poză 2" />
+        <img src="media/album4/IMG_20250524_180041.jpg" alt="Poză 3" />
+        <img src="media/album4/IMG_20250527_194826.jpg" alt="Poză 4" />
+        <img src="media/album4/IMG_20250530_130759.jpg" alt="Poză 5" />
+      </section>
+    </main>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <span class="prev-btn" id="prevBtn">&#10094;</span>
+    <img id="lightboxImg" src="" alt="Imagine mărită" />
+    <span class="next-btn" id="nextBtn">&#10095;</span>
+  </div>
+
+  <script>
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('closeBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentIndex = 0;
+
+    function showLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = images[currentIndex].src;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % images.length;
+      lightboxImg.src = images[currentIndex].src;
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      lightboxImg.src = images[currentIndex].src;
+    }
+
+    images.forEach((img, index) => {
+      img.addEventListener('click', () => showLightbox(index));
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    nextBtn.addEventListener('click', showNext);
+    prevBtn.addEventListener('click', showPrev);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
+    });
+  </script>
+</body>
+</html>

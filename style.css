@@ -1,0 +1,53 @@
+/* Stiluri pentru butoane */
+.album-button {
+  padding: 15px 25px;
+  background: #e0f0ff;       /* fundal foarte deschis albastru */
+  border: 2px solid #007BFF; /* bordura albastru intens */
+  border-radius: 10px;
+  text-decoration: none;
+  color: #007BFF;            /* text albastru */
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.4s, color 0.4s;
+  display: inline-block;
+  box-shadow: 0 2px 6px rgba(0, 123, 255, 0.3);
+}
+
+.album-button:hover {
+  background: linear-gradient(45deg, #007BFF, #0056b3); /* gradient albastru închis */
+  color: #fff;                                         /* text alb */
+  box-shadow: 0 4px 12px rgba(0, 86, 179, 0.6);
+}
+
+/* Stiluri galerie poze */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+}
+
+.gallery img {
+  width: 200px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+/* Stiluri pentru chenare text */
+.text-box {
+  color: #ADD8E6;          /* text albastru deschis */
+  font-size: 1.1em;
+  text-decoration: none;   /* elimină sublinierea textului */
+}
+
+.text-box a {
+  color: inherit;          /* link-urile iau culoarea textului din chenar */
+  text-decoration: none;   /* fără subliniere pe link-uri */
+}
+
+.text-box a:hover {
+  text-decoration: underline; /* subliniază la hover pe link-uri */
+}
