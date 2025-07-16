@@ -1,0 +1,1 @@
+git add . && git commit -m "doar album1" && git push origin main
