@@ -12,378 +12,67 @@
       overflow-x: hidden;
     }
 
-    .overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw;
-      height: 100vh;
-      background-color: rgba(0, 0, 0, 0.3);
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .gif-container {
+    .clock-container {
       position: fixed;
       top: 20px;
-      left: 20px;
-      width: 160px;
-      height: 160px;
-      border: 4px solid #007BFF;
-      border-radius: 15px;
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 15px #007BFFaa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: pulse 2.5s infinite ease-in-out;
-      z-index: 1000;
-      overflow: hidden;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        box-shadow: 0 0 15px #007BFFaa;
-        transform: scale(1);
-      }
-      50% {
-        box-shadow: 0 0 25px #007BFFdd;
-        transform: scale(1.05);
-      }
-    }
-
-    .gif-container img {
-      max-width: 100%;
-      max-height: 100%;
-      border-radius: 12px;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    header {
-      padding: 40px 20px;
-      color: white;
-      text-shadow: 0 0 5px rgba(0,0,0,0.7);
-      position: relative;
-      z-index: 10;
-      text-align: center;
-    }
-
-    .buttons-container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 15px;
-      margin: 40px 0 40px 40px;
-      position: relative;
-      z-index: 10;
-      max-width: 200px;
-    }
-
-    .album-button {
-      padding: 15px 25px;
-      background: #007BFF;
-      border: 2px solid #0056b3;
-      border-radius: 10px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-      display: inline-block;
-      box-shadow: 0 4px 6px rgba(0, 91, 187, 0.4);
-      user-select: none;
-      width: 100%;
-      box-sizing: border-box;
-      text-align: center;
-    }
-
-    .album-button:hover {
-      background-color: #0056b3;
-      color: #ffdd57;
-      box-shadow: 0 6px 8px rgba(255, 221, 87, 0.6);
-    }
-
-    footer {
-      padding: 15px;
-      color: white;
-      text-shadow: 0 0 5px rgba(0,0,0,0.7);
-      position: relative;
-      z-index: 10;
-      text-align: center;
-    }
-
-    #gameArea {
-      position: fixed;
-      bottom: 20px;
       right: 20px;
-      width: 300px;
-      height: 250px;
-      background-color: rgba(255, 255, 255, 0.2);
-      border: 2px solid #007BFF;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,123,255,0.7);
-      overflow: hidden;
-      z-index: 1000;
-    }
-
-    .ball {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.2s ease-out;
-    }
-
-    #scoreBoard {
-      position: fixed;
-      bottom: 270px;
-      right: 60px;
       width: 100px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.85);
-      color: #007BFF;
-      font-weight: bold;
-      font-size: 20px;
-      line-height: 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px #007BFFaa;
-      text-align: center;
-      user-select: none;
+      height: 100px;
+      border: 3px solid white;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.5);
       z-index: 1001;
-      font-family: 'Segoe UI', sans-serif;
-      pointer-events: none;
     }
 
-    /* Ceasul analog */
-    #clockContainer {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 3cm;  /* 3 cm */
-      height: 3cm;
-      background: rgba(255, 255, 255, 0.8);
-      border: 2px solid #007BFF;
-      border-radius: 50%;
-      box-shadow: 0 0 10px #007BFFaa;
-      z-index: 1100;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      user-select: none;
-      padding: 5px;
-      box-sizing: border-box;
-    }
-
-    #clock {
-      position: relative;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* Cadran ceas */
-    #clockFace {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      background: white;
-      position: relative;
-      box-shadow: inset 0 0 10px #aaa;
-    }
-
-    /* Cifre */
-    .number {
-      position: absolute;
-      font-weight: bold;
-      color: #007BFF;
-      user-select: none;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    /* Stilizare ace */
     .hand {
       position: absolute;
-      bottom: 50%;
-      left: 50%;
-      background: #007BFF;
-      transform-origin: bottom center;
-      transform: rotate(0deg);
-      transition: transform 0.5s ease-in-out;
-    }
-
-    #hourHand {
-      width: 4px;
-      height: 25%;
-      border-radius: 4px;
-      top: 25%;
-      margin-left: -2px;
-      background: #004a99;
-    }
-
-    #minuteHand {
-      width: 3px;
-      height: 38%;
-      border-radius: 4px;
-      top: 12%;
-      margin-left: -1.5px;
-      background: #007BFF;
-    }
-
-    #secondHand {
-      width: 2px;
-      height: 45%;
-      border-radius: 2px;
-      top: 7%;
-      margin-left: -1px;
-      background: red;
-    }
-
-    /* Centrul ceasului */
-    #centerDot {
-      position: absolute;
-      width: 8px;
-      height: 8px;
-      background: #007BFF;
-      border-radius: 50%;
+      width: 50%;
+      height: 2px;
+      background: white;
       top: 50%;
       left: 50%;
-      margin-left: -4px;
-      margin-top: -4px;
-      z-index: 10;
+      transform-origin: left;
+      transform: rotate(90deg);
     }
 
-    /* Data */
-    #dateDisplay {
-      margin-top: 5px;
-      font-size: 0.8rem;
-      color: #007BFF;
-      font-weight: bold;
-      user-select: none;
-      font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      width: 100%;
+    #dateBox {
+      position: fixed;
+      top: 140px;
+      right: 20px;
+      color: white;
+      background: rgba(0,0,0,0.5);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-size: 16px;
+      z-index: 1001;
     }
   </style>
 </head>
 <body>
 
-  <div class="overlay"></div>
-
-  <div class="gif-container">
-    <img src="media/album1/typix-good-vibe.gif" alt="GIF animat" />
+  <!-- Ceas analog -->
+  <div class="clock-container" id="clock">
+    <div class="hand" id="hour"></div>
+    <div class="hand" id="minute"></div>
+    <div class="hand" id="second"></div>
   </div>
 
-  <header>
-    <h1>Bine ai venit în călătoriile noastre!</h1>
-    <p>Totul incepe cu un singur pas.</p>
-  </header>
-
-  <main class="buttons-container">
-    <a href="album1.html" class="album-button">Când drumuri noi ni s-au deschis</a>
-    <a href="album2.html" class="album-button">Ținându-ne de mână strâns</a>
-    <a href="album3.html" class="album-button">Prin pași tăcuți spre paradis</a>
-    <a href="album4.html" class="album-button">Cu sufletul mereu în dans</a>
-    <a href="album5.html" class="album-button">Așa se naște-un „pentru totdeauna”</a>
-  </main>
-
-  <!-- Ceasul analog -->
-  <div id="clockContainer">
-    <div id="clock">
-      <div id="clockFace">
-        <!-- Cifre -->
-        <div class="number" style="top: 5%; left: 50%; transform: translateX(-50%);">12</div>
-        <div class="number" style="top: 18%; left: 80%; transform: translateX(-50%);">1</div>
-        <div class="number" style="top: 38%; left: 93%; transform: translateX(-50%);">2</div>
-        <div class="number" style="top: 60%; left: 95%; transform: translateX(-50%);">3</div>
-        <div class="number" style="top: 80%; left: 80%; transform: translateX(-50%);">4</div>
-        <div class="number" style="top: 92%; left: 53%; transform: translateX(-50%);">5</div>
-        <div class="number" style="top: 92%; left: 47%; transform: translateX(-50%);">6</div>
-        <div class="number" style="top: 80%; left: 20%; transform: translateX(-50%);">7</div>
-        <div class="number" style="top: 60%; left: 10%; transform: translateX(-50%);">8</div>
-        <div class="number" style="top: 38%; left: 7%; transform: translateX(-50%);">9</div>
-        <div class="number" style="top: 18%; left: 20%; transform: translateX(-50%);">10</div>
-        <div class="number" style="top: 5%; left: 47%; transform: translateX(-50%);">11</div>
-
-        <!-- Ace -->
-        <div id="hourHand" class="hand"></div>
-        <div id="minuteHand" class="hand"></div>
-        <div id="secondHand" class="hand"></div>
-
-        <div id="centerDot"></div>
-      </div>
-    </div>
-    <div id="dateDisplay"></div>
-  </div>
-
-  <div id="gameArea"></div>
-  <div id="scoreBoard">Scor: 0</div>
-
-  <footer>
-    <p>© 2025</p>
-  </footer>
+  <!-- Data -->
+  <div id="dateBox"></div>
 
   <script>
-    const gameArea = document.getElementById('gameArea');
-    const scoreBoard = document.getElementById('scoreBoard');
-    let score = 0;
-
-    const colors = [
-      'red', 'orange', 'yellow', 'green', 'blue',
-      'deepskyblue', 'violet', 'pink', 'gray', 'black', 'indigo'
-    ];
-
-    function createBall() {
-      const ball = document.createElement('div');
-      ball.classList.add('ball');
-      ball.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
-      const maxLeft = gameArea.clientWidth - 30;
-      const maxTop = gameArea.clientHeight - 30;
-
-      ball.style.left = Math.random() * maxLeft + 'px';
-      ball.style.top = Math.random() * maxTop + 'px';
-
-      ball.addEventListener('click', () => {
-        ball.remove();
-        score++;
-        scoreBoard.textContent = 'Scor: ' + score;
-        createBall(); // înlocuiește bila prinsă
-      });
-
-      gameArea.appendChild(ball);
-    }
-
-    function startGame() {
-      for (let i = 0; i < 5; i++) {
-        createBall();
-      }
-    }
-
-    startGame();
-
-    // Ceas analog + dată
     function updateClock() {
       const now = new Date();
+      const second = now.getSeconds() * 6;
+      const minute = now.getMinutes() * 6 + second / 60;
+      const hour = ((now.getHours() % 12) / 12) * 360 + minute / 12;
 
-      const sec = now.getSeconds();
-      const min = now.getMinutes();
-      const hour = now.getHours() % 12;
+      document.getElementById('second').style.transform = `rotate(${second}deg)`;
+      document.getElementById('minute').style.transform = `rotate(${minute}deg)`;
+      document.getElementById('hour').style.transform = `rotate(${hour}deg)`;
 
-      // Calcul unghiuri ace
-      const secAngle = sec * 6; // 360/60
-      const minAngle = min * 6 + sec * 0.1; // 360/60 + progres secundar
-      const hourAngle = hour * 30 + min * 0.5; // 360/12 + progres minut
-
-      document.getElementById('secondHand').style.transform = `rotate(${secAngle}deg)`;
-      document.getElementById('minuteHand').style.transform = `rotate(${minAngle}deg)`;
-      document.getElementById('hourHand').style.transform = `rotate(${hourAngle}deg)`;
-
-      // Afisare data
-      const day = now.getDate().toString().padStart(2,'0');
-      const month = (now.getMonth() + 1).toString().padStart(2,'0');
-      const year = now.getFullYear();
-
-      document.getElementById('dateDisplay').textContent = `${day}.${month}.${year}`;
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('dateBox').textContent = now.toLocaleDateString('ro-RO', options);
     }
 
     setInterval(updateClock, 1000);
