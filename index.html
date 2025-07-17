@@ -155,28 +155,45 @@
       pointer-events: none;
     }
 
-    /* Stil ceas analogic - fix în dreapta sus, 3cm */
+    /* Stiluri pentru ceas analog și chenar data */
+
     #analogClock {
       position: fixed;
       top: 20px;
       right: 20px;
-      width: 4cm;
-      height: 4cm;
+      width: 5cm;
+      height: 5cm;
       z-index: 10000;
       background: rgba(255, 255, 255, 0.8);
       border-radius: 50%;
       box-shadow: 0 0 8px rgba(0,0,0,0.3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
 
     #clockCanvas {
-      width: 4cm;
-      height: 4cm;
+      width: 5cm;
+      height: 5cm;
       border-radius: 50%;
       display: block;
+      margin: auto;
     }
+
+    #dateBox {
+      position: fixed;
+      top: calc(20px + 5cm + 1cm);
+      right: 20px;
+      width: 5cm;
+      padding: 10px;
+      background: rgba(255,255,255,0.85);
+      color: #007BFF;
+      font-weight: bold;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,123,255,0.7);
+      z-index: 10000;
+      user-select: none;
+    }
+
   </style>
 </head>
 <body>
@@ -203,16 +220,20 @@
   <div id="gameArea"></div>
   <div id="scoreBoard">Scor: 0</div>
 
-  <!-- Ceasul analogic -->
+  <!-- Ceas analog -->
   <div id="analogClock">
-    <canvas id="clockCanvas" width="120" height="120"></canvas>
+    <canvas id="clockCanvas" width="200" height="200"></canvas>
   </div>
+
+  <!-- Chenar cu data -->
+  <div id="dateBox"></div>
 
   <footer>
     <p>© 2025</p>
   </footer>
 
   <script>
+    // Joc biluțe - rămâne neschimbat
     const gameArea = document.getElementById('gameArea');
     const scoreBoard = document.getElementById('scoreBoard');
     let score = 0;
@@ -237,7 +258,7 @@
         ball.remove();
         score++;
         scoreBoard.textContent = 'Scor: ' + score;
-        createBall(); // înlocuiește bila prinsă
+        createBall();
       });
 
       gameArea.appendChild(ball);
@@ -251,7 +272,8 @@
 
     startGame();
 
-    // Ceas analogic
+    // Ceas analog
+
     const canvas = document.getElementById('clockCanvas');
     const ctx = canvas.getContext('2d');
     const radius = canvas.height / 2;
@@ -270,33 +292,33 @@
       ctx.fillStyle = 'white';
       ctx.fill();
 
-      const grad = ctx.createRadialGradient(0, 0, radius * 0.95, 0, 0, radius * 1.05);
+      const grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0,radius*1.05);
       grad.addColorStop(0, '#333');
       grad.addColorStop(0.5, 'white');
       grad.addColorStop(1, '#333');
       ctx.strokeStyle = grad;
-      ctx.lineWidth = radius * 0.1;
+      ctx.lineWidth = radius*0.1;
       ctx.stroke();
 
       ctx.beginPath();
-      ctx.arc(0, 0, radius * 0.07, 0, 2 * Math.PI);
+      ctx.arc(0, 0, radius*0.07, 0, 2*Math.PI);
       ctx.fillStyle = '#333';
       ctx.fill();
     }
 
     function drawNumbers(ctx, radius) {
-      ctx.font = radius * 0.15 + "px Arial";
+      ctx.font = radius*0.15 + "px Arial";
       ctx.textBaseline = "middle";
       ctx.textAlign = "center";
-      for (let num = 1; num <= 12; num++) {
+      for(let num = 1; num <= 12; num++) {
         const ang = num * Math.PI / 6;
         ctx.rotate(ang);
-        ctx.translate(0, -radius * 0.85);
+        ctx.translate(0, -radius*0.85);
         ctx.rotate(-ang);
         ctx.fillStyle = '#333';
         ctx.fillText(num.toString(), 0, 0);
         ctx.rotate(ang);
-        ctx.translate(0, radius * 0.85);
+        ctx.translate(0, radius*0.85);
         ctx.rotate(-ang);
       }
     }
@@ -311,13 +333,13 @@
       hour = (hour * Math.PI / 6) +
              (minute * Math.PI / (6 * 60)) +
              (second * Math.PI / (360 * 60));
-      drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+      drawHand(ctx, hour, radius*0.5, radius*0.07);
 
       let minuteAngle = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
-      drawHand(ctx, minuteAngle, radius * 0.8, radius * 0.07);
+      drawHand(ctx, minuteAngle, radius*0.8, radius*0.07);
 
       let secondAngle = second * Math.PI / 30;
-      drawHand(ctx, secondAngle, radius * 0.9, radius * 0.02, 'red');
+      drawHand(ctx, secondAngle, radius*0.9, radius*0.02, 'red');
     }
 
     function drawHand(ctx, pos, length, width, color = '#333') {
@@ -325,7 +347,7 @@
       ctx.lineWidth = width;
       ctx.lineCap = "round";
       ctx.strokeStyle = color;
-      ctx.moveTo(0, 0);
+      ctx.moveTo(0,0);
       ctx.rotate(pos);
       ctx.lineTo(0, -length);
       ctx.stroke();
@@ -334,7 +356,22 @@
 
     setInterval(drawClock, 1000);
     drawClock();
-  </script>
 
+    // Data sub ceas
+    const dateBox = document.getElementById('dateBox');
+
+    function updateDate() {
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      let dateString = now.toLocaleDateString('ro-RO', options);
+      // Capitalize first letter
+      dateString = dateString.charAt(0).toUpperCase() + dateString.slice(1);
+      dateBox.textContent = dateString;
+    }
+
+    updateDate();
+    setInterval(updateDate, 60 * 1000); // actualizează la fiecare minut
+
+  </script>
 </body>
 </html>
