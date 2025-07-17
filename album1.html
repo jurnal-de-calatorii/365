@@ -110,7 +110,7 @@
     }
 
     .desc-container input {
-      width: calc(80% + 1cm);
+      width: 80%;
       padding: 5px;
       border-radius: 4px;
       border: none;
@@ -136,17 +136,6 @@
       z-index: 1000;
       display: none;
       flex-direction: column;
-      text-align: center; /* Alinează descrierea */
-    }
-
-    .lightbox-desc {
-      color: white;
-      font-size: 1.2em;
-      margin-bottom: 10px;
-      max-width: 90%;
-      padding: 10px;
-      background-color: rgba(0, 0, 0, 0.7);
-      border-radius: 8px;
     }
 
     .lightbox img {
@@ -154,6 +143,18 @@
       max-height: 80vh;
       border-radius: 10px;
       box-shadow: 0 0 20px #ffd54f;
+    }
+
+    .lightbox-desc {
+      color: white;
+      font-size: 1.2em;
+      text-align: center;
+      margin-top: 20px;
+      background-color: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 8px;
+      max-width: 90%;
+      margin: 20px auto 0;
     }
 
     .close-btn, .prev-btn, .next-btn {
@@ -168,6 +169,7 @@
       border-radius: 50%;
       user-select: none;
       transition: background-color 0.3s;
+      user-select: none;
       z-index: 1001;
     }
 
@@ -191,6 +193,7 @@
     .next-btn {
       right: 20px;
     }
+
   </style>
 </head>
 <body>
@@ -207,13 +210,13 @@
       <div class="img-container">
         <img src="media/album1/20240922_151916.jpg" alt="Poză 1" />
         <div class="desc-container">
-          <input type="text" placeholder="Totul incepe cu un vis.." id="desc1" />
+          <input type="text" placeholder="Totul incepe cu o zi.." id="desc1" />
         </div>
       </div>
       <div class="img-container">
         <img src="media/album1/20240922_163810.jpg" alt="Poză 2" />
         <div class="desc-container">
-          <input type="text" placeholder="..si cu o dorinta arzatoare" id="desc2" />
+          <input type="text" placeholder="Adaugă o descriere" id="desc2" />
         </div>
       </div>
       <div class="img-container">
@@ -258,6 +261,42 @@
           <input type="text" placeholder="Adaugă o descriere" id="desc9" />
         </div>
       </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_174938.jpg" alt="Poză 10" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc10" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_175045.jpg" alt="Poză 11" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc11" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_175251.jpg" alt="Poză 12" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc12" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_175323.jpg" alt="Poză 13" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc13" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_175444.jpg" alt="Poză 14" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc14" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_175546.jpg" alt="Poză 15" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc15" />
+        </div>
+      </div>
     </section>
   </main>
 
@@ -265,31 +304,28 @@
   <div class="lightbox" id="lightbox">
     <span class="close-btn" id="closeBtn">&times;</span>
     <span class="prev-btn" id="prevBtn">&#10094;</span>
-    <div id="lightboxDesc" class="lightbox-desc"></div>
     <img id="lightboxImg" src="" alt="Imagine mărită" />
     <span class="next-btn" id="nextBtn">&#10095;</span>
+    <div class="lightbox-desc" id="lightboxDesc"></div>  <!-- Descrierea în Lightbox -->
   </div>
 
   <script>
-    // Gallery Lightbox
     const images = document.querySelectorAll('.gallery img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
-    const lightboxDesc = document.getElementById('lightboxDesc'); // Referință la descriere
+    const lightboxDesc = document.getElementById('lightboxDesc');
     const closeBtn = document.getElementById('closeBtn');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
 
     let currentIndex = 0;
 
+    // Funcție pentru a arăta lightbox-ul cu descrierea
     function showLightbox(index) {
       currentIndex = index;
       lightboxImg.src = images[currentIndex].src;
-
-      // Afișează descrierea în lightbox
-      const description = document.getElementById(`desc${index + 1}`).value; // Obținem descrierea
-      lightboxDesc.textContent = description; // Actualizăm descrierea în lightbox
-
+      const description = document.getElementById(`desc${index + 1}`).value || '';
+      lightboxDesc.textContent = description;
       lightbox.style.display = 'flex';
     }
 
@@ -300,28 +336,26 @@
     function showNext() {
       currentIndex = (currentIndex + 1) % images.length;
       lightboxImg.src = images[currentIndex].src;
-
-      // Actualizăm descrierea pentru imaginea următoare
-      const description = document.getElementById(`desc${currentIndex + 1}`).value;
+      const description = document.getElementById(`desc${currentIndex + 1}`).value || '';
       lightboxDesc.textContent = description;
     }
 
     function showPrev() {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       lightboxImg.src = images[currentIndex].src;
-
-      // Actualizăm descrierea pentru imaginea anterioară
-      const description = document.getElementById(`desc${currentIndex + 1}`).value;
+      const description = document.getElementById(`desc${currentIndex + 1}`).value || '';
       lightboxDesc.textContent = description;
     }
 
+    // Event listener pentru poze
     images.forEach((img, index) => {
       img.addEventListener('click', () => showLightbox(index));
     });
 
     closeBtn.addEventListener('click', closeLightbox);
-    nextBtn.addEventListener('click', showNext);
     prevBtn.addEventListener('click', showPrev);
+    nextBtn.addEventListener('click', showNext);
   </script>
+
 </body>
 </html>
