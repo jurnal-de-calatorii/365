@@ -287,24 +287,70 @@
     </section>
   </main>
 
-  <script>
-    // Salvăm descrierea în localStorage
-    const descriptionInputs = document.querySelectorAll('.desc-container input');
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <span class="prev-btn" id="prevBtn">&#10094;</span>
+    <img id="lightboxImg" src="" alt="Imagine mărită" />
+    <span class="next-btn" id="nextBtn">&#10095;</span>
+  </div>
 
-    descriptionInputs.forEach((input, index) => {
+  <script>
+    // Gallery Lightbox
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('closeBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentIndex = 0;
+
+    function showLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = images[currentIndex].src;
+      lightbox.style.display = 'flex';
+    }
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    function showNext() {
+      currentIndex = (currentIndex + 1) % images.length;
+      lightboxImg.src = images[currentIndex].src;
+    }
+
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      lightboxImg.src = images[currentIndex].src;
+    }
+
+    images.forEach((img, index) => {
+      img.addEventListener('click', () => showLightbox(index));
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    nextBtn.addEventListener('click', showNext);
+    prevBtn.addEventListener('click', showPrev);
+
+    // Salvează descrierile în localStorage
+    document.querySelectorAll('.desc-container input').forEach((input, index) => {
+      const savedDescription = localStorage.getItem(`desc${index + 1}`);
+      if (savedDescription) {
+        input.value = savedDescription;
+      }
+
       input.addEventListener('input', () => {
         localStorage.setItem(`desc${index + 1}`, input.value);
       });
     });
 
-    // La încărcarea paginii, restaurăm descrierea
-    window.addEventListener('load', () => {
-      descriptionInputs.forEach((input, index) => {
-        const savedDesc = localStorage.getItem(`desc${index + 1}`);
-        if (savedDesc) {
-          input.value = savedDesc;
-        }
-      });
+    // Închide lightbox cu ESC și navighează cu săgeți
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showNext();
+      if (e.key === 'ArrowLeft') showPrev();
     });
   </script>
 
