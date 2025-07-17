@@ -97,6 +97,19 @@
       box-shadow: 0 0 15px #ffd54f;
     }
 
+    .description-box {
+      width: 250px;
+      height: 80px;
+      margin-top: 10px;
+      padding: 5px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
+      resize: none;
+    }
+
     /* Lightbox styles */
     .lightbox {
       position: fixed;
@@ -154,55 +167,6 @@
     .next-btn {
       right: 20px;
     }
-
-    /* Chenare mutabile, mai mari */
-    .movable-box {
-      position: fixed;
-      width: 320px;
-      height: 170px;
-      background: rgba(0,0,0,0.7);
-      border: 2px solid #ffd54f;
-      border-radius: 10px;
-      color: white;
-      padding: 10px;
-      box-sizing: border-box;
-      font-size: 1.1em;
-      resize: both;
-      overflow: auto;
-      cursor: grab;
-      user-select: text;
-      z-index: 1500;
-    }
-
-    .movable-box:active {
-      cursor: grabbing;
-    }
-
-    .left-box {
-      top: 100px;
-      left: 20px;
-    }
-
-    .right-box {
-      top: 100px;
-      right: 20px;
-    }
-
-    .move-btn {
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      background: #ffd54f;
-      border: none;
-      border-radius: 5px;
-      padding: 3px 8px;
-      font-weight: bold;
-      cursor: move;
-      user-select: none;
-      color: black;
-      box-shadow: 0 0 5px rgba(0,0,0,0.5);
-      z-index: 1600;
-    }
   </style>
 </head>
 <body>
@@ -216,148 +180,61 @@
 
   <main>
     <section class="gallery">
-      <img src="media/album1/20240922_151916.jpg" alt="Poză 1" />
-      <img src="media/album1/20240922_163810.jpg" alt="Poză 2" />
-      <img src="media/album1/20240922_163825.jpg" alt="Poză 3" />
-      <img src="media/album1/20240922_170413.jpg" alt="Poză 4" />
-      <img src="media/album1/20240922_151021.jpg" alt="Poză 5" />
-      <img src="media/album1/IMG_20250531_191538.jpg" alt="Poză 6" />
-      <img src="media/album1/IMG_20250531_191617.jpg" alt="Poză 7" />
-      <img src="media/album1/IMG_20250601_173404.jpg" alt="Poză 8" />
-      <img src="media/album1/IMG_20250601_174932.jpg" alt="Poză 9" />
-      <img src="media/album1/IMG_20250601_175027_edit_654051002551759.jpg" alt="Poză 10" />
-      <img src="media/album1/IMG_20250601_181924_edit_653909852726781.jpg" alt="Poză 11" />
-      <img src="media/album1/IMG_20250601_182932_1.jpg" alt="Poză 12" />
-      <img src="media/album1/IMG_20250608_213620.jpg" alt="Poză 13" />
-      <img src="media/album1/IMG_20250608_220538.jpg" alt="Poză 14" />
-      <img src="media/album1/IMG_20250615_202621.jpg" alt="Poză 15" />
+      <!-- Poze și câmpuri pentru descriere -->
+      <div>
+        <img src="media/album1/20240922_151916.jpg" alt="Poză 1" id="img1" />
+        <textarea class="description-box" id="desc1" placeholder="Adaugă o descriere..."></textarea>
+      </div>
+      <div>
+        <img src="media/album1/20240922_163810.jpg" alt="Poză 2" id="img2" />
+        <textarea class="description-box" id="desc2" placeholder="Adaugă o descriere..."></textarea>
+      </div>
+      <div>
+        <img src="media/album1/20240922_163825.jpg" alt="Poză 3" id="img3" />
+        <textarea class="description-box" id="desc3" placeholder="Adaugă o descriere..."></textarea>
+      </div>
+      <div>
+        <img src="media/album1/20240922_170413.jpg" alt="Poză 4" id="img4" />
+        <textarea class="description-box" id="desc4" placeholder="Adaugă o descriere..."></textarea>
+      </div>
+      <div>
+        <img src="media/album1/20240922_151021.jpg" alt="Poză 5" id="img5" />
+        <textarea class="description-box" id="desc5" placeholder="Adaugă o descriere..."></textarea>
+      </div>
+      <!-- Adaugă restul pozelor similare -->
     </section>
   </main>
 
-  <!-- Chenare mutabile -->
-  <div class="movable-box left-box" id="leftBox" contenteditable="true" spellcheck="false">
-    Pe cărări nevăzute, pașii mă poartă,<br>
-    Spre zări necunoscute, cu inima deschisă.<br>
-    Fiecare loc o poveste, fiecare pas o carte,<br>
-    Călătoria-n suflet, o dorință aprinsă.
-  </div>
-
-  <div class="movable-box right-box" id="rightBox" contenteditable="true" spellcheck="false">
-    Descoperă lumea cu ochi de copil,<br>
-    Fiecare colț ascunde-un vis subtil.<br>
-    Pășește curajos, simte fiecare clipă,<br>
-    În călătorie găsești mereu o nouă scânteie.
-  </div>
-
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <span class="close-btn" id="closeBtn">&times;</span>
-    <span class="prev-btn" id="prevBtn">&#10094;</span>
-    <img id="lightboxImg" src="" alt="Imagine mărită" />
-    <span class="next-btn" id="nextBtn">&#10095;</span>
-  </div>
-
   <script>
-    // Gallery Lightbox
-    const images = document.querySelectorAll('.gallery img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const closeBtn = document.getElementById('closeBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    let currentIndex = 0;
-
-    function showLightbox(index) {
-      currentIndex = index;
-      lightboxImg.src = images[currentIndex].src;
-      lightbox.style.display = 'flex';
+    // Funcție pentru a salva descrierea în localStorage
+    function saveDescription(imgId, textareaId) {
+      const description = document.getElementById(textareaId).value;
+      localStorage.setItem(imgId, description);
     }
 
-    function closeLightbox() {
-      lightbox.style.display = 'none';
-    }
-
-    function showNext() {
-      currentIndex = (currentIndex + 1) % images.length;
-      lightboxImg.src = images[currentIndex].src;
-    }
-
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      lightboxImg.src = images[currentIndex].src;
-    }
-
-    images.forEach((img, index) => {
-      img.addEventListener('click', () => showLightbox(index));
-    });
-
-    closeBtn.addEventListener('click', closeLightbox);
-    nextBtn.addEventListener('click', showNext);
-    prevBtn.addEventListener('click', showPrev);
-
-    // Închide lightbox cu ESC și navighează cu săgeți
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'ArrowLeft') showPrev();
-    });
-
-    // Funcționalitate mutare chenare (drag and drop)
-    function dragElement(elmnt) {
-      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-
-      elmnt.style.position = "fixed";
-
-      elmnt.onmousedown = dragMouseDown;
-
-      function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // poziția cursorului inițială
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-        elmnt.style.cursor = "grabbing";
-      }
-
-      function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        // cât s-a mutat cursorul
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        // setare poziție nouă
-        let top = elmnt.offsetTop - pos2;
-        let left = elmnt.offsetLeft - pos1;
-
-        // Limite ca să nu iasă din fereastră
-        const minLeft = 0;
-        const minTop = 0;
-        const maxLeft = window.innerWidth - elmnt.offsetWidth;
-        const maxTop = window.innerHeight - elmnt.offsetHeight;
-
-        if(left < minLeft) left = minLeft;
-        if(top < minTop) top = minTop;
-        if(left > maxLeft) left = maxLeft;
-        if(top > maxTop) top = maxTop;
-
-        elmnt.style.top = top + "px";
-        elmnt.style.left = left + "px";
-      }
-
-      function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-        elmnt.style.cursor = "grab";
+    // Funcție pentru a încărca descrierea din localStorage
+    function loadDescription(imgId, textareaId) {
+      const savedDescription = localStorage.getItem(imgId);
+      if (savedDescription) {
+        document.getElementById(textareaId).value = savedDescription;
       }
     }
 
-    dragElement(document.getElementById("leftBox"));
-    dragElement(document.getElementById("rightBox"));
+    // Adăugăm event listeneri pentru fiecare câmp de descriere
+    document.getElementById('desc1').addEventListener('blur', () => saveDescription('img1', 'desc1'));
+    document.getElementById('desc2').addEventListener('blur', () => saveDescription('img2', 'desc2'));
+    document.getElementById('desc3').addEventListener('blur', () => saveDescription('img3', 'desc3'));
+    document.getElementById('desc4').addEventListener('blur', () => saveDescription('img4', 'desc4'));
+    document.getElementById('desc5').addEventListener('blur', () => saveDescription('img5', 'desc5'));
+
+    // La încărcarea paginii, încărcăm descrierea pentru fiecare poză
+    window.onload = function() {
+      loadDescription('img1', 'desc1');
+      loadDescription('img2', 'desc2');
+      loadDescription('img3', 'desc3');
+      loadDescription('img4', 'desc4');
+      loadDescription('img5', 'desc5');
+    }
   </script>
 </body>
 </html>
