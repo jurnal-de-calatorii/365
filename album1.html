@@ -97,19 +97,6 @@
       box-shadow: 0 0 15px #ffd54f;
     }
 
-    .description-box {
-      width: 250px;
-      height: 80px;
-      margin-top: 10px;
-      padding: 5px;
-      font-size: 14px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-      background-color: rgba(255, 255, 255, 0.8);
-      color: #333;
-      resize: none;
-    }
-
     /* Lightbox styles */
     .lightbox {
       position: fixed;
@@ -167,6 +154,20 @@
     .next-btn {
       right: 20px;
     }
+
+    /* Stilizare pentru descriere */
+    .description-box {
+      width: 250px;
+      height: 100px;
+      margin-top: 10px;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 10px;
+      box-sizing: border-box;
+      font-size: 0.9em;
+      resize: none;
+    }
   </style>
 </head>
 <body>
@@ -180,61 +181,67 @@
 
   <main>
     <section class="gallery">
-      <!-- Poze și câmpuri pentru descriere -->
       <div>
-        <img src="media/album1/20240922_151916.jpg" alt="Poză 1" id="img1" />
-        <textarea class="description-box" id="desc1" placeholder="Adaugă o descriere..."></textarea>
+        <img id="img1" src="media/album1/20240922_151916.jpg" alt="Poză 1" />
+        <textarea id="desc1" class="description-box" placeholder="Adăugați o descriere..." ></textarea>
       </div>
       <div>
-        <img src="media/album1/20240922_163810.jpg" alt="Poză 2" id="img2" />
-        <textarea class="description-box" id="desc2" placeholder="Adaugă o descriere..."></textarea>
+        <img id="img2" src="media/album1/20240922_163810.jpg" alt="Poză 2" />
+        <textarea id="desc2" class="description-box" placeholder="Adăugați o descriere..." ></textarea>
       </div>
       <div>
-        <img src="media/album1/20240922_163825.jpg" alt="Poză 3" id="img3" />
-        <textarea class="description-box" id="desc3" placeholder="Adaugă o descriere..."></textarea>
+        <img id="img3" src="media/album1/20240922_163825.jpg" alt="Poză 3" />
+        <textarea id="desc3" class="description-box" placeholder="Adăugați o descriere..." ></textarea>
       </div>
       <div>
-        <img src="media/album1/20240922_170413.jpg" alt="Poză 4" id="img4" />
-        <textarea class="description-box" id="desc4" placeholder="Adaugă o descriere..."></textarea>
+        <img id="img4" src="media/album1/20240922_170413.jpg" alt="Poză 4" />
+        <textarea id="desc4" class="description-box" placeholder="Adăugați o descriere..." ></textarea>
       </div>
       <div>
-        <img src="media/album1/20240922_151021.jpg" alt="Poză 5" id="img5" />
-        <textarea class="description-box" id="desc5" placeholder="Adaugă o descriere..."></textarea>
+        <img id="img5" src="media/album1/20240922_151021.jpg" alt="Poză 5" />
+        <textarea id="desc5" class="description-box" placeholder="Adăugați o descriere..." ></textarea>
       </div>
-      <!-- Adaugă restul pozelor similare -->
     </section>
   </main>
 
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" id="closeBtn">&times;</span>
+    <span class="prev-btn" id="prevBtn">&#10094;</span>
+    <img id="lightboxImg" src="" alt="Imagine mărită" />
+    <span class="next-btn" id="nextBtn">&#10095;</span>
+  </div>
+
   <script>
-    // Funcție pentru a salva descrierea în localStorage
+    // Salvare descriere în localStorage
     function saveDescription(imgId, textareaId) {
-      const description = document.getElementById(textareaId).value;
-      localStorage.setItem(imgId, description);
+      const desc = document.getElementById(textareaId).value;
+      localStorage.setItem(imgId, desc);
     }
 
-    // Funcție pentru a încărca descrierea din localStorage
+    // Încărcare descriere din localStorage
     function loadDescription(imgId, textareaId) {
-      const savedDescription = localStorage.getItem(imgId);
-      if (savedDescription) {
-        document.getElementById(textareaId).value = savedDescription;
+      const savedDesc = localStorage.getItem(imgId);
+      if (savedDesc) {
+        document.getElementById(textareaId).value = savedDesc;
       }
     }
 
-    // Adăugăm event listeneri pentru fiecare câmp de descriere
+    // Event listener pentru salvarea descrierii când se pierde focus-ul
     document.getElementById('desc1').addEventListener('blur', () => saveDescription('img1', 'desc1'));
     document.getElementById('desc2').addEventListener('blur', () => saveDescription('img2', 'desc2'));
     document.getElementById('desc3').addEventListener('blur', () => saveDescription('img3', 'desc3'));
     document.getElementById('desc4').addEventListener('blur', () => saveDescription('img4', 'desc4'));
     document.getElementById('desc5').addEventListener('blur', () => saveDescription('img5', 'desc5'));
 
-    // La încărcarea paginii, încărcăm descrierea pentru fiecare poză
+    // Încărcare descriere la încărcarea paginii
     window.onload = function() {
       loadDescription('img1', 'desc1');
       loadDescription('img2', 'desc2');
       loadDescription('img3', 'desc3');
       loadDescription('img4', 'desc4');
       loadDescription('img5', 'desc5');
-    }
+    };
   </script>
 </body>
 </html>
