@@ -48,16 +48,26 @@
     }
 
     .back-link {
-      display: inline-block;
-      margin-top: 10px;
-      text-decoration: none;
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 2000;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px 12px;
+      border-radius: 8px;
       color: #ffd54f;
       font-weight: bold;
+      text-decoration: none;
       text-shadow: 0 0 3px black;
-      transition: color 0.3s;
+      transition: color 0.3s, background 0.3s, box-shadow 0.3s;
+      user-select: none;
+      box-shadow: 0 0 10px #ffd54f;
+      display: inline-block;
     }
     .back-link:hover {
       color: #fff176;
+      background: rgba(0, 0, 0, 0.7);
+      box-shadow: 0 0 15px #fff176;
     }
 
     main {
@@ -196,9 +206,12 @@
   </style>
 </head>
 <body>
+
+  <!-- Buton fixat în colțul stânga sus -->
+  <a href="index.html" class="back-link">⟵ Du-mă înapoi</a>
+
   <header>
     <h1>„Yesterday is history. Tomorrow is a mystery. and Today is a gift” </h1>
-    <a href="index.html" class="back-link">⟵ Du-mă înapoi</a>
   </header>
 
   <main>
@@ -208,32 +221,32 @@
       <img src="media/album1/20240922_163825.jpg" alt="Poză 3" />
       <img src="media/album1/20240922_170413.jpg" alt="Poză 4" />
       <img src="media/album1/20240922_151021.jpg" alt="Poză 5" />
-<img src="media/album1/IMG_20250531_191538.jpg" alt="Poză 6" />
-<img src="media/album1/IMG_20250531_191617.jpg" alt="Poză 7" />
-<img src="media/album1/IMG_20250601_173404.jpg" alt="Poză 8" />
-<img src="media/album1/IMG_20250601_174932.jpg" alt="Poză 9" />
-<img src="media/album1/IMG_20250601_175027_edit_654051002551759.jpg" alt="Poză 10" />
-<img src="media/album1/IMG_20250601_181924_edit_653909852726781.jpg" alt="Poză 11" />
-<img src="media/album1/IMG_20250601_182932_1.jpg" alt="Poză 12" />
-<img src="media/album1/IMG_20250608_213620.jpg" alt="Poză 13" />
-<img src="media/album1/IMG_20250608_220538.jpg" alt="Poză 14" />
-<img src="media/album1/IMG_20250615_202621.jpg" alt="Poză 15" />
+      <img src="media/album1/IMG_20250531_191538.jpg" alt="Poză 6" />
+      <img src="media/album1/IMG_20250531_191617.jpg" alt="Poză 7" />
+      <img src="media/album1/IMG_20250601_173404.jpg" alt="Poză 8" />
+      <img src="media/album1/IMG_20250601_174932.jpg" alt="Poză 9" />
+      <img src="media/album1/IMG_20250601_175027_edit_654051002551759.jpg" alt="Poză 10" />
+      <img src="media/album1/IMG_20250601_181924_edit_653909852726781.jpg" alt="Poză 11" />
+      <img src="media/album1/IMG_20250601_182932_1.jpg" alt="Poză 12" />
+      <img src="media/album1/IMG_20250608_213620.jpg" alt="Poză 13" />
+      <img src="media/album1/IMG_20250608_220538.jpg" alt="Poză 14" />
+      <img src="media/album1/IMG_20250615_202621.jpg" alt="Poză 15" />
     </section>
   </main>
 
   <!-- Chenare mutabile -->
   <div class="movable-box left-box" id="leftBox" contenteditable="true" spellcheck="false">
-Pe cărări nevăzute, pașii mă poartă,<br>
-Spre zări necunoscute, cu inima deschisă.<br>
-Fiecare loc o poveste, fiecare pas o carte,<br>
-Călătoria-n suflet, o dorință aprinsă.
+    Pe cărări nevăzute, pașii mă poartă,<br>
+    Spre zări necunoscute, cu inima deschisă.<br>
+    Fiecare loc o poveste, fiecare pas o carte,<br>
+    Călătoria-n suflet, o dorință aprinsă.
   </div>
 
   <div class="movable-box right-box" id="rightBox" contenteditable="true" spellcheck="false">
-Descoperă lumea cu ochi de copil,<br>
-Fiecare colț ascunde-un vis subtil.<br>
-Pășește curajos, simte fiecare clipă,<br>
-În călătorie găsești mereu o nouă scânteie.
+    Descoperă lumea cu ochi de copil,<br>
+    Fiecare colț ascunde-un vis subtil.<br>
+    Pășește curajos, simte fiecare clipă,<br>
+    În călătorie găsești mereu o nouă scânteie.
   </div>
 
   <!-- Lightbox -->
