@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -12,71 +13,217 @@
       overflow-x: hidden;
     }
 
-    .clock-container {
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .gif-container {
       position: fixed;
       top: 20px;
-      right: 20px;
-      width: 100px;
-      height: 100px;
-      border: 3px solid white;
-      border-radius: 50%;
-      background: rgba(0,0,0,0.5);
-      z-index: 1001;
+      left: 20px;
+      width: 160px;
+      height: 160px;
+      border: 4px solid #007BFF;
+      border-radius: 15px;
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 15px #007BFFaa;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      animation: pulse 2.5s infinite ease-in-out;
+      z-index: 1000;
+      overflow: hidden;
     }
 
-    .hand {
-      position: absolute;
-      width: 50%;
-      height: 2px;
-      background: white;
-      top: 50%;
-      left: 50%;
-      transform-origin: left;
-      transform: rotate(90deg);
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 15px #007BFFaa;
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 0 25px #007BFFdd;
+        transform: scale(1.05);
+      }
     }
 
-    #dateBox {
-      position: fixed;
-      top: 140px;
-      right: 20px;
+    .gif-container img {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 12px;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    header {
+      padding: 40px 20px;
       color: white;
-      background: rgba(0,0,0,0.5);
-      padding: 5px 10px;
-      border-radius: 5px;
-      font-size: 16px;
-      z-index: 1001;
+      text-shadow: 0 0 5px rgba(0,0,0,0.7);
+      position: relative;
+      z-index: 10;
+      text-align: center;
     }
+
+    .buttons-container {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 15px;
+      margin: 40px 0 40px 40px;
+      position: relative;
+      z-index: 10;
+      max-width: 200px;
+    }
+
+    .album-button {
+      padding: 15px 25px;
+      background: #007BFF;
+      border: 2px solid #0056b3;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+      display: inline-block;
+      box-shadow: 0 4px 6px rgba(0, 91, 187, 0.4);
+      user-select: none;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .album-button:hover {
+      background-color: #0056b3;
+      color: #ffdd57;
+      box-shadow: 0 6px 8px rgba(255, 221, 87, 0.6);
+    }
+
+    footer {
+      padding: 15px;
+      color: white;
+      text-shadow: 0 0 5px rgba(0,0,0,0.7);
+      position: relative;
+      z-index: 10;
+      text-align: center;
+    }
+
+    #gameArea {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      height: 250px;
+      background-color: rgba(255, 255, 255, 0.2);
+      border: 2px solid #007BFF;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,123,255,0.7);
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    .ball {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: transform 0.2s ease-out;
+    }
+
+    #scoreBoard {
+      position: fixed;
+      bottom: 270px;
+      right: 60px;
+      width: 100px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.85);
+      color: #007BFF;
+      font-weight: bold;
+      font-size: 20px;
+      line-height: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #007BFFaa;
+      text-align: center;
+      user-select: none;
+      z-index: 1001;
+      font-family: 'Segoe UI', sans-serif;
+      pointer-events: none;
+    }
+
   </style>
 </head>
 <body>
 
-  <!-- Ceas analog -->
-  <div class="clock-container" id="clock">
-    <div class="hand" id="hour"></div>
-    <div class="hand" id="minute"></div>
-    <div class="hand" id="second"></div>
+  <div class="overlay"></div>
+
+  <div class="gif-container">
+    <img src="media/album1/typix-good-vibe.gif" alt="GIF animat" />
   </div>
 
-  <!-- Data -->
-  <div id="dateBox"></div>
+  <header>
+    <h1>Bine ai venit în călătoriile noastre!</h1>
+    <p>Totul incepe cu un singur pas.</p>
+  </header>
+
+  <main class="buttons-container">
+    <a href="album1.html" class="album-button">Când drumuri noi ni s-au deschis</a>
+    <a href="album2.html" class="album-button">Ținându-ne de mână strâns</a>
+    <a href="album3.html" class="album-button">Prin pași tăcuți spre paradis</a>
+    <a href="album4.html" class="album-button">Cu sufletul mereu în dans</a>
+    <a href="album5.html" class="album-button">Așa se naște-un „pentru totdeauna”</a>
+  </main>
+
+  <div id="gameArea"></div>
+  <div id="scoreBoard">Scor: 0</div>
+
+  <footer>
+    <p>© 2025</p>
+  </footer>
 
   <script>
-    function updateClock() {
-      const now = new Date();
-      const second = now.getSeconds() * 6;
-      const minute = now.getMinutes() * 6 + second / 60;
-      const hour = ((now.getHours() % 12) / 12) * 360 + minute / 12;
+    const gameArea = document.getElementById('gameArea');
+    const scoreBoard = document.getElementById('scoreBoard');
+    let score = 0;
 
-      document.getElementById('second').style.transform = `rotate(${second}deg)`;
-      document.getElementById('minute').style.transform = `rotate(${minute}deg)`;
-      document.getElementById('hour').style.transform = `rotate(${hour}deg)`;
+    const colors = [
+      'red', 'orange', 'yellow', 'green', 'blue',
+      'deepskyblue', 'violet', 'pink', 'gray', 'black', 'indigo'
+    ];
 
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      document.getElementById('dateBox').textContent = now.toLocaleDateString('ro-RO', options);
+    function createBall() {
+      const ball = document.createElement('div');
+      ball.classList.add('ball');
+      ball.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+      const maxLeft = gameArea.clientWidth - 30;
+      const maxTop = gameArea.clientHeight - 30;
+
+      ball.style.left = Math.random() * maxLeft + 'px';
+      ball.style.top = Math.random() * maxTop + 'px';
+
+      ball.addEventListener('click', () => {
+        ball.remove();
+        score++;
+        scoreBoard.textContent = 'Scor: ' + score;
+        createBall(); // înlocuiește bila prinsă
+      });
+
+      gameArea.appendChild(ball);
     }
 
-    setInterval(updateClock, 1000);
-    updateClock();
+    function startGame() {
+      for (let i = 0; i < 5; i++) {
+        createBall();
+      }
+    }
+
+    startGame();
   </script>
 
 </body>
