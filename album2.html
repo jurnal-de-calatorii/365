@@ -43,30 +43,11 @@
       background: transparent;
       color: white;
       text-shadow: 0 0 5px black;
-
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 60px; /* să aibă suficient spațiu */
     }
 
-    .back-link {
-      position: absolute;
-      left: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      text-decoration: none;
-      color: #ffd54f;
-      font-weight: bold;
-      text-shadow: 0 0 3px black;
-      transition: color 0.3s;
-      font-size: 1.1em;
-      white-space: nowrap;
-    }
-
-    .back-link:hover {
-      color: #fff176;
+    /* Ascundem linkul inapoi din header */
+    header .back-link {
+      display: none;
     }
 
     main {
@@ -130,7 +111,6 @@
       border-radius: 50%;
       user-select: none;
       transition: background-color 0.3s;
-      user-select: none;
       z-index: 1001;
     }
     .close-btn:hover, .prev-btn:hover, .next-btn:hover {
@@ -186,13 +166,48 @@
       top: 100px;
       right: 20px;
     }
+
+    /* Buton inapoi in chenar fix stanga (ca la album1) */
+    .back-button-box {
+      position: fixed;
+      top: 100px;
+      left: 20px;
+      background: rgba(0,0,0,0.7);
+      border: 2px solid #ffd54f;
+      border-radius: 10px;
+      padding: 10px 20px;
+      z-index: 1600;
+      user-select: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px #ffd54f;
+      font-weight: bold;
+    }
+
+    .back-button-box .back-link {
+      color: #ffd54f;
+      text-decoration: none;
+      font-size: 1.2em;
+      text-shadow: 0 0 5px black;
+      transition: color 0.3s;
+      display: inline-block;
+    }
+
+    .back-button-box .back-link:hover {
+      color: #fff176;
+    }
   </style>
 </head>
 <body>
   <header>
-    <a href="index.html" class="back-link">⟵ Du-mă înapoi</a>
     <h1>„Dragostea nu constă în a ne privi unul pe altul, ci în a privi împreună în aceeași direcție.”</h1>
+    <!-- Linkul inapoi din header ascuns prin CSS -->
+    <a href="index.html" class="back-link">⟵ Du-mă înapoi</a>
   </header>
+
+  <!-- Buton inapoi in chenar fix stanga -->
+  <div class="back-button-box">
+    <a href="index.html" class="back-link">⟵ Du-mă înapoi</a>
+  </div>
 
   <main>
     <section class="gallery">
