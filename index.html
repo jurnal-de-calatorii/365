@@ -12,6 +12,8 @@
       overflow-x: hidden;
     }
 
+    /* (păstrează restul stilurilor tale) */
+
     .overlay {
       position: fixed;
       top: 0; left: 0;
@@ -22,139 +24,40 @@
       pointer-events: none;
     }
 
-    .gif-container {
+    /* ... restul CSS-ului tău rămâne neschimbat ... */
+
+    /* STILURI PENTRU CEASUL ANALOGIC */
+    #clock-container {
       position: fixed;
       top: 20px;
-      left: 20px;
-      width: 160px;
-      height: 160px;
-      border: 4px solid #007BFF;
-      border-radius: 15px;
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 15px #007BFFaa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: pulse 2.5s infinite ease-in-out;
-      z-index: 1000;
-      overflow: hidden;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        box-shadow: 0 0 15px #007BFFaa;
-        transform: scale(1);
-      }
-      50% {
-        box-shadow: 0 0 25px #007BFFdd;
-        transform: scale(1.05);
-      }
-    }
-
-    .gif-container img {
-      max-width: 100%;
-      max-height: 100%;
-      border-radius: 12px;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    header {
-      padding: 40px 20px;
-      color: white;
-      text-shadow: 0 0 5px rgba(0,0,0,0.7);
-      position: relative;
-      z-index: 10;
-      text-align: center;
-    }
-
-    .buttons-container {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 15px;
-      margin: 40px 0 40px 40px;
-      position: relative;
-      z-index: 10;
-      max-width: 200px;
-    }
-
-    .album-button {
-      padding: 15px 25px;
-      background: #007BFF;
-      border: 2px solid #0056b3;
-      border-radius: 10px;
-      text-decoration: none;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      transition: background-color 0.3s, color 0.3s;
-      display: inline-block;
-      box-shadow: 0 4px 6px rgba(0, 91, 187, 0.4);
-      user-select: none;
-      width: 100%;
-      box-sizing: border-box;
-      text-align: center;
-    }
-
-    .album-button:hover {
-      background-color: #0056b3;
-      color: #ffdd57;
-      box-shadow: 0 6px 8px rgba(255, 221, 87, 0.6);
-    }
-
-    footer {
-      padding: 15px;
-      color: white;
-      text-shadow: 0 0 5px rgba(0,0,0,0.7);
-      position: relative;
-      z-index: 10;
-      text-align: center;
-    }
-
-    #gameArea {
-      position: fixed;
-      bottom: 20px;
       right: 20px;
-      width: 300px;
-      height: 250px;
-      background-color: rgba(255, 255, 255, 0.2);
-      border: 2px solid #007BFF;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,123,255,0.7);
-      overflow: hidden;
-      z-index: 1000;
-    }
-
-    .ball {
-      position: absolute;
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: transform 0.2s ease-out;
-    }
-
-    #scoreBoard {
-      position: fixed;
-      bottom: 270px;
-      right: 60px;
-      width: 100px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.85);
-      color: #007BFF;
-      font-weight: bold;
-      font-size: 20px;
-      line-height: 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 10px #007BFFaa;
-      text-align: center;
+      width: 3cm;
+      height: 3.8cm; /* pentru ceas + data */
+      background: rgba(0,0,0,0.6);
+      border: 2px solid #ffd54f;
+      border-radius: 10px;
+      color: white;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       user-select: none;
-      z-index: 1001;
-      font-family: 'Segoe UI', sans-serif;
-      pointer-events: none;
+      z-index: 10000;
+      text-align: center;
+      padding: 10px 0;
+      box-sizing: border-box;
     }
 
+    #clock {
+      display: block;
+      margin: 0 auto;
+      background: transparent;
+    }
+
+    #date {
+      margin-top: 8px;
+      font-size: 0.9em;
+      letter-spacing: 1px;
+      color: #ffd54f;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -184,6 +87,12 @@
   <footer>
     <p>© 2025</p>
   </footer>
+
+  <!-- CEAS ANALOGIC -->
+  <div id="clock-container">
+    <canvas id="clock" width="130" height="130"></canvas>
+    <div id="date"></div>
+  </div>
 
   <script>
     const gameArea = document.getElementById('gameArea');
@@ -223,6 +132,107 @@
     }
 
     startGame();
+
+    // --- COD CEAS ANALOGIC ---
+    const canvas = document.getElementById("clock");
+    const ctx = canvas.getContext("2d");
+    const radius = canvas.height / 2;
+    ctx.translate(radius, radius);
+
+    function drawClock() {
+      drawFace(ctx, radius);
+      drawNumbers(ctx, radius);
+      drawTime(ctx, radius);
+    }
+
+    function drawFace(ctx, radius) {
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.95, 0, 2 * Math.PI);
+      ctx.fillStyle = "black";
+      ctx.fill();
+
+      // Border cu gradient galben
+      let grad = ctx.createRadialGradient(0, 0, radius * 0.9, 0, 0, radius * 1.05);
+      grad.addColorStop(0, '#ffd54f');
+      grad.addColorStop(0.5, 'black');
+      grad.addColorStop(1, '#ffd54f');
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = radius * 0.1;
+      ctx.stroke();
+
+      // Centrul ceasului
+      ctx.beginPath();
+      ctx.arc(0, 0, radius * 0.1, 0, 2 * Math.PI);
+      ctx.fillStyle = '#ffd54f';
+      ctx.fill();
+    }
+
+    function drawNumbers(ctx, radius) {
+      ctx.font = radius * 0.15 + "px Segoe UI, sans-serif";
+      ctx.textBaseline = "middle";
+      ctx.textAlign = "center";
+      ctx.fillStyle = '#ffd54f';
+
+      for (let num = 1; num <= 12; num++) {
+        let ang = num * Math.PI / 6;
+        ctx.rotate(ang);
+        ctx.translate(0, -radius * 0.8);
+        ctx.rotate(-ang);
+        ctx.fillText(num.toString(), 0, 0);
+        ctx.rotate(ang);
+        ctx.translate(0, radius * 0.8);
+        ctx.rotate(-ang);
+      }
+    }
+
+    function drawHand(ctx, pos, length, width) {
+      ctx.beginPath();
+      ctx.lineWidth = width;
+      ctx.lineCap = "round";
+      ctx.moveTo(0, 0);
+      ctx.rotate(pos);
+      ctx.lineTo(0, -length);
+      ctx.strokeStyle = '#ffd54f';
+      ctx.stroke();
+      ctx.rotate(-pos);
+    }
+
+    function drawTime(ctx, radius) {
+      const now = new Date();
+      let hour = now.getHours();
+      let minute = now.getMinutes();
+      let second = now.getSeconds();
+
+      hour = hour % 12;
+      hour = (hour * Math.PI / 6) +
+             (minute * Math.PI / (6 * 60)) +
+             (second * Math.PI / (360 * 60));
+      drawHand(ctx, hour, radius * 0.5, radius * 0.07);
+
+      let minuteAngle = (minute * Math.PI / 30) + (second * Math.PI / (30 * 60));
+      drawHand(ctx, minuteAngle, radius * 0.8, radius * 0.05);
+
+      let secondAngle = second * Math.PI / 30;
+      ctx.strokeStyle = '#ff4444'; // roșu pentru secundar
+      drawHand(ctx, secondAngle, radius * 0.85, radius * 0.02);
+    }
+
+    function updateDate() {
+      const dateDiv = document.getElementById("date");
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      const formattedDate = now.toLocaleDateString('ro-RO', options);
+      // Prima literă cu majusculă
+      dateDiv.textContent = formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+    }
+
+    function tick() {
+      drawClock();
+      updateDate();
+    }
+
+    setInterval(tick, 1000);
+    tick(); // apel inițial imediat
   </script>
 
 </body>
