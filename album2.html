@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -45,9 +46,17 @@
       text-shadow: 0 0 5px black;
     }
 
-    /* Ascundem linkul inapoi din header */
-    header .back-link {
-      display: none;
+    .back-link {
+      display: inline-block;
+      margin-top: 10px;
+      text-decoration: none;
+      color: #ffd54f;
+      font-weight: bold;
+      text-shadow: 0 0 3px black;
+      transition: color 0.3s;
+    }
+    .back-link:hover {
+      color: #fff176;
     }
 
     main {
@@ -111,6 +120,7 @@
       border-radius: 50%;
       user-select: none;
       transition: background-color 0.3s;
+      user-select: none;
       z-index: 1001;
     }
     .close-btn:hover, .prev-btn:hover, .next-btn:hover {
@@ -166,48 +176,13 @@
       top: 100px;
       right: 20px;
     }
-
-    /* Buton inapoi in chenar fix stanga (ca la album1) */
-    .back-button-box {
-      position: fixed;
-      top: 100px;
-      left: 20px;
-      background: rgba(0,0,0,0.7);
-      border: 2px solid #ffd54f;
-      border-radius: 10px;
-      padding: 10px 20px;
-      z-index: 1600;
-      user-select: none;
-      cursor: pointer;
-      box-shadow: 0 0 10px #ffd54f;
-      font-weight: bold;
-    }
-
-    .back-button-box .back-link {
-      color: #ffd54f;
-      text-decoration: none;
-      font-size: 1.2em;
-      text-shadow: 0 0 5px black;
-      transition: color 0.3s;
-      display: inline-block;
-    }
-
-    .back-button-box .back-link:hover {
-      color: #fff176;
-    }
   </style>
 </head>
 <body>
   <header>
     <h1>„Dragostea nu constă în a ne privi unul pe altul, ci în a privi împreună în aceeași direcție.”</h1>
-    <!-- Linkul inapoi din header ascuns prin CSS -->
     <a href="index.html" class="back-link">⟵ Du-mă înapoi</a>
   </header>
-
-  <!-- Buton inapoi in chenar fix stanga -->
-  <div class="back-button-box">
-    <a href="index.html" class="back-link">⟵ Du-mă înapoi</a>
-  </div>
 
   <main>
     <section class="gallery">
@@ -216,32 +191,32 @@
       <img src="media/album2/20241026_172532.jpg" alt="Poză 3" />
       <img src="media/album2/20241026_173923.jpg" alt="Poză 4" />
       <img src="media/album2/20241026_174251.jpg" alt="Poză 5" />
-      <img src="media/album2/IMG_20250601_174054.jpg" alt="Poză 6" />
-      <img src="media/album2/IMG_20250601_174505_edit_653793478870028.jpg" alt="Poză 7" />
-      <img src="media/album2/IMG_20250601_173548.jpg" alt="Poză 8" />
-      <img src="media/album2/IMG_20250601_172344.jpg" alt="Poză 9" />
-      <img src="media/album2/IMG_20250531_223834.jpg" alt="Poză 10" />
-      <img src="media/album2/IMG_20250601_181429_edit_653992521092914.jpg" alt="Poză 11" />
-      <img src="media/album2/IMG_20250615_202643.jpg" alt="Poză 12" />
-      <img src="media/album2/IMG_20250629_163354.jpg" alt="Poză 13" />
+<img src="media/album2/IMG_20250601_174054.jpg" alt="Poză 6" />
+<img src="media/album2/IMG_20250601_174505_edit_653793478870028.jpg" alt="Poză 7" />
+<img src="media/album2/IMG_20250601_173548.jpg" alt="Poză 8" />
+<img src="media/album2/IMG_20250601_172344.jpg" alt="Poză 9" />
+<img src="media/album2/IMG_20250531_223834.jpg" alt="Poză 10" />
+<img src="media/album2/IMG_20250601_181429_edit_653992521092914.jpg" alt="Poză 11" />
+<img src="media/album2/IMG_20250615_202643.jpg" alt="Poză 12" />
+<img src="media/album2/IMG_20250629_163354.jpg" alt="Poză 13" />
     </section>
   </main>
 
   <!-- Chenare mutabile -->
   <div class="movable-box left-box" id="leftBox" contenteditable="true" spellcheck="false">
     Pașii mă poartă departe,
-    În lume largă, nesfârșită,
-    Fiecare drum e o șoaptă,
-    O poveste neîntreruptă.
+În lume largă, nesfârșită,
+Fiecare drum e o șoaptă,
+O poveste neîntreruptă.
 
-    <br>
+<br>
   </div>
 
   <div class="movable-box right-box" id="rightBox" contenteditable="true" spellcheck="false">
     Călătoria-n suflet începe
-    Cu un pas mic, dar hotărât.
-    Lumea întreagă te așteaptă,
-    Să-ți deschizi drumul neatins.
+Cu un pas mic, dar hotărât.
+Lumea întreagă te așteaptă,
+Să-ți deschizi drumul neatins.
   </div>
 
   <!-- Lightbox -->
