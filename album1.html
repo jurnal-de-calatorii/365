@@ -64,6 +64,7 @@
       box-shadow: 0 0 10px #ffd54f;
       display: inline-block;
     }
+
     .back-link:hover {
       color: #fff176;
       background: rgba(0, 0, 0, 0.7);
@@ -83,8 +84,13 @@
       gap: 15px;
     }
 
-    .gallery img {
+    .gallery .img-container {
+      text-align: center;
       width: 250px;
+    }
+
+    .gallery img {
+      width: 100%;
       height: auto;
       cursor: pointer;
       border-radius: 8px;
@@ -154,6 +160,7 @@
       user-select: none;
       z-index: 1001;
     }
+
     .close-btn:hover, .prev-btn:hover, .next-btn:hover {
       background-color: rgba(255, 213, 79, 0.8);
       color: black;
@@ -186,71 +193,101 @@
 
   <main>
     <section class="gallery">
-      <!-- Pozele cu descrierea adăugată -->
+      <!-- Structura pentru poze și descrierea fiecărei poze -->
       <div class="img-container">
         <img src="media/album1/20240922_151916.jpg" alt="Poză 1" />
         <div class="desc-container">
           <input type="text" placeholder="Adaugă o descriere" id="desc1" />
         </div>
       </div>
-      <!-- Adăugăm restul de 14 imagini în mod similar -->
       <div class="img-container">
         <img src="media/album1/20240922_163810.jpg" alt="Poză 2" />
         <div class="desc-container">
           <input type="text" placeholder="Adaugă o descriere" id="desc2" />
         </div>
       </div>
-      <!-- Continuăm pentru toate cele 15 imagini... -->
+      <div class="img-container">
+        <img src="media/album1/20240922_163825.jpg" alt="Poză 3" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc3" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/20240922_170413.jpg" alt="Poză 4" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc4" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/20240922_151021.jpg" alt="Poză 5" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc5" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250531_191538.jpg" alt="Poză 6" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc6" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250531_191617.jpg" alt="Poză 7" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc7" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_173404.jpg" alt="Poză 8" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc8" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_174932.jpg" alt="Poză 9" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc9" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_175027_edit_654051002551759.jpg" alt="Poză 10" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc10" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_181924_edit_653909852726781.jpg" alt="Poză 11" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc11" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250601_182932_1.jpg" alt="Poză 12" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc12" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250608_213620.jpg" alt="Poză 13" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc13" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250608_220538.jpg" alt="Poză 14" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc14" />
+        </div>
+      </div>
+      <div class="img-container">
+        <img src="media/album1/IMG_20250615_202621.jpg" alt="Poză 15" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc15" />
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- Lightbox -->
-  <div class="lightbox" id="lightbox">
-    <span class="close-btn" id="closeBtn">&times;</span>
-    <span class="prev-btn" id="prevBtn">&#10094;</span>
-    <img id="lightboxImg" src="" alt="Imagine mărită" />
-    <span class="next-btn" id="nextBtn">&#10095;</span>
-  </div>
-
   <script>
-    // Gallery Lightbox
-    const images = document.querySelectorAll('.gallery img');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightboxImg');
-    const closeBtn = document.getElementById('closeBtn');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-
-    let currentIndex = 0;
-
-    function showLightbox(index) {
-      currentIndex = index;
-      lightboxImg.src = images[currentIndex].src;
-      lightbox.style.display = 'flex';
-    }
-
-    function closeLightbox() {
-      lightbox.style.display = 'none';
-    }
-
-    function showNext() {
-      currentIndex = (currentIndex + 1) % images.length;
-      lightboxImg.src = images[currentIndex].src;
-    }
-
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      lightboxImg.src = images[currentIndex].src;
-    }
-
-    images.forEach((img, index) => {
-      img.addEventListener('click', () => showLightbox(index));
-    });
-
-    closeBtn.addEventListener('click', closeLightbox);
-    nextBtn.addEventListener('click', showNext);
-    prevBtn.addEventListener('click', showPrev);
-
     // Salvăm descrierea în localStorage
     const descriptionInputs = document.querySelectorAll('.desc-container input');
 
@@ -270,5 +307,6 @@
       });
     });
   </script>
+
 </body>
 </html>
