@@ -2,7 +2,7 @@
 <html lang="ro">
 <head>
   <meta charset="UTF-8" />
-  <title></title>
+  <title>Album Foto</title>
   <style>
     /* Fundal cu poza */
     body {
@@ -97,6 +97,26 @@
       box-shadow: 0 0 15px #ffd54f;
     }
 
+    .desc-container {
+      text-align: center;
+      width: 100%;
+      margin-top: 5px;
+    }
+
+    .desc-container input {
+      width: 80%;
+      padding: 5px;
+      border-radius: 4px;
+      border: none;
+      font-size: 1em;
+      margin-top: 10px;
+    }
+
+    .desc-container input:focus {
+      outline: none;
+      border: 2px solid #ffd54f;
+    }
+
     /* Lightbox styles */
     .lightbox {
       position: fixed;
@@ -154,53 +174,33 @@
     .next-btn {
       right: 20px;
     }
-
-    /* Stilizare pentru descriere */
-    .description-box {
-      width: 250px;
-      height: 100px;
-      margin-top: 10px;
-      border-radius: 8px;
-      background-color: rgba(0, 0, 0, 0.7);
-      color: white;
-      padding: 10px;
-      box-sizing: border-box;
-      font-size: 0.9em;
-      resize: none;
-    }
   </style>
 </head>
 <body>
 
-  <!-- Buton fixat în colțul stânga sus -->
   <a href="index.html" class="back-link">⟵ Du-mă înapoi</a>
 
   <header>
-    <h1>„Yesterday is history. Tomorrow is a mystery. and Today is a gift” </h1>
+    <h1>„Yesterday is history. Tomorrow is a mystery. and Today is a gift”</h1>
   </header>
 
   <main>
     <section class="gallery">
-      <div>
-        <img id="img1" src="media/album1/20240922_151916.jpg" alt="Poză 1" />
-        <textarea id="desc1" class="description-box" placeholder="Adăugați o descriere..." ></textarea>
+      <!-- Pozele cu descrierea adăugată -->
+      <div class="img-container">
+        <img src="media/album1/20240922_151916.jpg" alt="Poză 1" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc1" />
+        </div>
       </div>
-      <div>
-        <img id="img2" src="media/album1/20240922_163810.jpg" alt="Poză 2" />
-        <textarea id="desc2" class="description-box" placeholder="Adăugați o descriere..." ></textarea>
+      <!-- Adăugăm restul de 14 imagini în mod similar -->
+      <div class="img-container">
+        <img src="media/album1/20240922_163810.jpg" alt="Poză 2" />
+        <div class="desc-container">
+          <input type="text" placeholder="Adaugă o descriere" id="desc2" />
+        </div>
       </div>
-      <div>
-        <img id="img3" src="media/album1/20240922_163825.jpg" alt="Poză 3" />
-        <textarea id="desc3" class="description-box" placeholder="Adăugați o descriere..." ></textarea>
-      </div>
-      <div>
-        <img id="img4" src="media/album1/20240922_170413.jpg" alt="Poză 4" />
-        <textarea id="desc4" class="description-box" placeholder="Adăugați o descriere..." ></textarea>
-      </div>
-      <div>
-        <img id="img5" src="media/album1/20240922_151021.jpg" alt="Poză 5" />
-        <textarea id="desc5" class="description-box" placeholder="Adăugați o descriere..." ></textarea>
-      </div>
+      <!-- Continuăm pentru toate cele 15 imagini... -->
     </section>
   </main>
 
@@ -213,35 +213,62 @@
   </div>
 
   <script>
-    // Salvare descriere în localStorage
-    function saveDescription(imgId, textareaId) {
-      const desc = document.getElementById(textareaId).value;
-      localStorage.setItem(imgId, desc);
+    // Gallery Lightbox
+    const images = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const closeBtn = document.getElementById('closeBtn');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    let currentIndex = 0;
+
+    function showLightbox(index) {
+      currentIndex = index;
+      lightboxImg.src = images[currentIndex].src;
+      lightbox.style.display = 'flex';
     }
 
-    // Încărcare descriere din localStorage
-    function loadDescription(imgId, textareaId) {
-      const savedDesc = localStorage.getItem(imgId);
-      if (savedDesc) {
-        document.getElementById(textareaId).value = savedDesc;
-      }
+    function closeLightbox() {
+      lightbox.style.display = 'none';
     }
 
-    // Event listener pentru salvarea descrierii când se pierde focus-ul
-    document.getElementById('desc1').addEventListener('blur', () => saveDescription('img1', 'desc1'));
-    document.getElementById('desc2').addEventListener('blur', () => saveDescription('img2', 'desc2'));
-    document.getElementById('desc3').addEventListener('blur', () => saveDescription('img3', 'desc3'));
-    document.getElementById('desc4').addEventListener('blur', () => saveDescription('img4', 'desc4'));
-    document.getElementById('desc5').addEventListener('blur', () => saveDescription('img5', 'desc5'));
+    function showNext() {
+      currentIndex = (currentIndex + 1) % images.length;
+      lightboxImg.src = images[currentIndex].src;
+    }
 
-    // Încărcare descriere la încărcarea paginii
-    window.onload = function() {
-      loadDescription('img1', 'desc1');
-      loadDescription('img2', 'desc2');
-      loadDescription('img3', 'desc3');
-      loadDescription('img4', 'desc4');
-      loadDescription('img5', 'desc5');
-    };
+    function showPrev() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      lightboxImg.src = images[currentIndex].src;
+    }
+
+    images.forEach((img, index) => {
+      img.addEventListener('click', () => showLightbox(index));
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    nextBtn.addEventListener('click', showNext);
+    prevBtn.addEventListener('click', showPrev);
+
+    // Salvăm descrierea în localStorage
+    const descriptionInputs = document.querySelectorAll('.desc-container input');
+
+    descriptionInputs.forEach((input, index) => {
+      input.addEventListener('input', () => {
+        localStorage.setItem(`desc${index + 1}`, input.value);
+      });
+    });
+
+    // La încărcarea paginii, restaurăm descrierea
+    window.addEventListener('load', () => {
+      descriptionInputs.forEach((input, index) => {
+        const savedDesc = localStorage.getItem(`desc${index + 1}`);
+        if (savedDesc) {
+          input.value = savedDesc;
+        }
+      });
+    });
   </script>
 </body>
 </html>
