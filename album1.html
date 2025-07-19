@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <title>Album Foto</title>
   <style>
-    /* Fundal cu poza */
     body {
       margin: 0;
       padding: 0;
@@ -16,7 +15,6 @@
       overflow-x: hidden;
     }
 
-    /* Imaginea de fundal */
     body::before {
       content: "";
       position: fixed;
@@ -29,7 +27,6 @@
       filter: brightness(0.6);
     }
 
-    /* Overlay semi-transparent */
     body::after {
       content: "";
       position: fixed;
@@ -103,7 +100,6 @@
       box-shadow: 0 0 15px #ffd54f;
     }
 
-    /* Lightbox styles */
     .lightbox {
       position: fixed;
       top: 0; left: 0;
@@ -125,6 +121,14 @@
       box-shadow: 0 0 20px #ffd54f;
     }
 
+    .lightbox #lightboxCaption {
+      color: white;
+      margin-top: 20px;
+      font-size: 1.2em;
+      text-align: center;
+      max-width: 90%;
+    }
+
     .close-btn, .prev-btn, .next-btn {
       position: absolute;
       top: 50%;
@@ -137,13 +141,7 @@
       border-radius: 50%;
       user-select: none;
       transition: background-color 0.3s;
-      user-select: none;
       z-index: 1001;
-    }
-
-    .close-btn:hover, .prev-btn:hover, .next-btn:hover {
-      background-color: rgba(255, 213, 79, 0.8);
-      color: black;
     }
 
     .close-btn {
@@ -154,13 +152,13 @@
       z-index: 1002;
     }
 
-    .prev-btn {
-      left: 20px;
+    .close-btn:hover, .prev-btn:hover, .next-btn:hover {
+      background-color: rgba(255, 213, 79, 0.8);
+      color: black;
     }
 
-    .next-btn {
-      right: 20px;
-    }
+    .prev-btn { left: 20px; }
+    .next-btn { right: 20px; }
   </style>
 </head>
 <body>
@@ -173,77 +171,67 @@
 
   <main>
     <section class="gallery">
-      <!-- Structura pentru poze fără descriere -->
-      <div class="img-container">
-        <img src="media/album1/20240922_151916.jpg" alt="Poză 1" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/20240922_163810.jpg" alt="Poză 2" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/20240922_163825.jpg" alt="Poză 3" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/20240922_170413.jpg" alt="Poză 4" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/20240922_151021.jpg" alt="Poză 5" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/IMG_20250531_191538.jpg" alt="Poză 6" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/IMG_20250531_191617.jpg" alt="Poză 7" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/IMG_20250601_173404.jpg" alt="Poză 8" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/IMG_20250601_174932.jpg" alt="Poză 9" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/IMG_20250601_175027_edit_654051002551759.jpg" alt="Poză 10" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/IMG_20250601_181924_edit_653909852726781.jpg" alt="Poză 11" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/IMG_20250601_182932_1.jpg" alt="Poză 12" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/IMG_20250608_213620.jpg" alt="Poză 13" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/IMG_20250608_220538.jpg" alt="Poză 14" />
-      </div>
-      <div class="img-container">
-        <img src="media/album1/IMG_20250615_202621.jpg" alt="Poză 15" />
-      </div>
+      <!-- 15 poze -->
+      <div class="img-container"><img src="media/album1/20240922_151916.jpg" alt="Poză 1" /></div>
+      <div class="img-container"><img src="media/album1/20240922_163810.jpg" alt="Poză 2" /></div>
+      <div class="img-container"><img src="media/album1/20240922_163825.jpg" alt="Poză 3" /></div>
+      <div class="img-container"><img src="media/album1/20240922_170413.jpg" alt="Poză 4" /></div>
+      <div class="img-container"><img src="media/album1/20240922_151021.jpg" alt="Poză 5" /></div>
+      <div class="img-container"><img src="media/album1/IMG_20250531_191538.jpg" alt="Poză 6" /></div>
+      <div class="img-container"><img src="media/album1/IMG_20250531_191617.jpg" alt="Poză 7" /></div>
+      <div class="img-container"><img src="media/album1/IMG_20250601_173404.jpg" alt="Poză 8" /></div>
+      <div class="img-container"><img src="media/album1/IMG_20250601_174932.jpg" alt="Poză 9" /></div>
+      <div class="img-container"><img src="media/album1/IMG_20250601_175027_edit_654051002551759.jpg" alt="Poză 10" /></div>
+      <div class="img-container"><img src="media/album1/IMG_20250601_181924_edit_653909852726781.jpg" alt="Poză 11" /></div>
+      <div class="img-container"><img src="media/album1/IMG_20250601_182932_1.jpg" alt="Poză 12" /></div>
+      <div class="img-container"><img src="media/album1/IMG_20250608_213620.jpg" alt="Poză 13" /></div>
+      <div class="img-container"><img src="media/album1/IMG_20250608_220538.jpg" alt="Poză 14" /></div>
+      <div class="img-container"><img src="media/album1/IMG_20250615_202621.jpg" alt="Poză 15" /></div>
     </section>
   </main>
 
-  <!-- Lightbox -->
+  <!-- Lightbox cu descriere -->
   <div class="lightbox" id="lightbox">
     <span class="close-btn" id="closeBtn">&times;</span>
     <span class="prev-btn" id="prevBtn">&#10094;</span>
     <img id="lightboxImg" src="" alt="Imagine mărită" />
+    <div id="lightboxCaption"></div>
     <span class="next-btn" id="nextBtn">&#10095;</span>
   </div>
 
   <script>
-    // Gallery Lightbox
     const images = document.querySelectorAll('.gallery img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
+    const captionBox = document.getElementById('lightboxCaption');
     const closeBtn = document.getElementById('closeBtn');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+
+   const captions = [
+  "„Călătoria de o mie de mile începe cu un singur pas.” – Lao Tzu",
+  "„Iubirea este singura forță care transformă un dușman într-un prieten.” – Martin Luther King Jr.",
+  "„În mijlocul naturii, descoperim simplitatea sufletului.”",
+  "„Drumurile grele duc adesea la destinații minunate.”",
+  "„Cel care se plimbă cu natura, merge cu sufletul deschis.”",
+  "„Acolo unde este dragoste, nici distanța nu mai contează.”",
+  "„Viața este o aventură îndrăzneață sau nimic.” – Helen Keller",
+  "„Cei care iubesc natura găsesc frumusețe peste tot.” – Laura Ingalls Wilder",
+  "„Călătoriile sunt cele care ne fac mai bogați sufletește.”",
+  "„Un peisaj frumos este o poezie fără cuvinte.”",
+  "„Fiecare drum parcurs împreună este o poveste de iubire.”",
+  "„A iubi și a fi iubit este ca o rază de soare într-o zi mohorâtă.”",
+  "„Natura nu se grăbește, totul se întâmplă la timp.” – Lao Tzu",
+  "„Cei care nu se pierd niciodată, nu vor descoperi niciodată ceva nou.”",
+  "„Iubirea adevărată nu are nevoie de destinații, ci doar de compania potrivită.”"
+];
 
     let currentIndex = 0;
 
     function showLightbox(index) {
       currentIndex = index;
       lightboxImg.src = images[currentIndex].src;
+      captionBox.textContent = captions[currentIndex];
       lightbox.style.display = 'flex';
     }
 
@@ -254,11 +242,13 @@
     function showNext() {
       currentIndex = (currentIndex + 1) % images.length;
       lightboxImg.src = images[currentIndex].src;
+      captionBox.textContent = captions[currentIndex];
     }
 
     function showPrev() {
       currentIndex = (currentIndex - 1 + images.length) % images.length;
       lightboxImg.src = images[currentIndex].src;
+      captionBox.textContent = captions[currentIndex];
     }
 
     images.forEach((img, index) => {

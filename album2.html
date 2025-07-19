@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ro">
 <head>
   <meta charset="UTF-8" />
   <title>Album 2</title>
   <style>
-    /* Fundal cu poza + overlay semi-transparent */
     body {
       margin: 0;
       padding: 0;
@@ -65,6 +63,20 @@
       margin: 0 auto;
     }
 
+    .intro-poem {
+      animation: slideIn 3s ease;
+      font-style: italic;
+      margin: 30px auto;
+      color: #ffd54f;
+      max-width: 600px;
+      font-size: 1.2em;
+    }
+
+    @keyframes slideIn {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -86,7 +98,6 @@
       box-shadow: 0 0 15px #ffd54f;
     }
 
-    /* Lightbox styles */
     .lightbox {
       position: fixed;
       top: 0; left: 0;
@@ -108,6 +119,14 @@
       box-shadow: 0 0 20px #ffd54f;
     }
 
+    .lightbox p {
+      color: white;
+      margin-top: 20px;
+      max-width: 80%;
+      text-align: center;
+      font-size: 1.2em;
+    }
+
     .close-btn, .prev-btn, .next-btn {
       position: absolute;
       top: 50%;
@@ -120,7 +139,6 @@
       border-radius: 50%;
       user-select: none;
       transition: background-color 0.3s;
-      user-select: none;
       z-index: 1001;
     }
     .close-btn:hover, .prev-btn:hover, .next-btn:hover {
@@ -136,15 +154,9 @@
       z-index: 1002;
     }
 
-    .prev-btn {
-      left: 20px;
-    }
+    .prev-btn { left: 20px; }
+    .next-btn { right: 20px; }
 
-    .next-btn {
-      right: 20px;
-    }
-
-    /* Chenare mutabile (ca album 1) */
     .movable-box {
       position: fixed;
       width: 320px;
@@ -163,19 +175,9 @@
       z-index: 1500;
     }
 
-    .movable-box:active {
-      cursor: grabbing;
-    }
-
-    .left-box {
-      top: 100px;
-      left: 20px;
-    }
-
-    .right-box {
-      top: 100px;
-      right: 20px;
-    }
+    .movable-box:active { cursor: grabbing; }
+    .left-box { top: 100px; left: 20px; }
+    .right-box { top: 100px; right: 20px; }
   </style>
 </head>
 <body>
@@ -185,146 +187,108 @@
   </header>
 
   <main>
+    <div class="intro-poem">
+      <p>Pe poteci de gând și drumuri line,</p>
+      <p>Natura-și spune dorul în suspine,</p>
+      <p>Și-n fiecare floare sau priveliște senină,</p>
+      <p>Se-ascunde-o clipă de lumină.</p>
+    </div>
     <section class="gallery">
       <img src="media/album2/20241026_170015.jpg" alt="Poză 1" />
       <img src="media/album2/20241026_170726.jpg" alt="Poză 2" />
       <img src="media/album2/20241026_172532.jpg" alt="Poză 3" />
       <img src="media/album2/20241026_173923.jpg" alt="Poză 4" />
       <img src="media/album2/20241026_174251.jpg" alt="Poză 5" />
-<img src="media/album2/IMG_20250601_174054.jpg" alt="Poză 6" />
-<img src="media/album2/IMG_20250601_174505_edit_653793478870028.jpg" alt="Poză 7" />
-<img src="media/album2/IMG_20250601_173548.jpg" alt="Poză 8" />
-<img src="media/album2/IMG_20250601_172344.jpg" alt="Poză 9" />
-<img src="media/album2/IMG_20250531_223834.jpg" alt="Poză 10" />
-<img src="media/album2/IMG_20250601_181429_edit_653992521092914.jpg" alt="Poză 11" />
-<img src="media/album2/IMG_20250615_202643.jpg" alt="Poză 12" />
-<img src="media/album2/IMG_20250629_163354.jpg" alt="Poză 13" />
+      <img src="media/album2/IMG_20250601_174054.jpg" alt="Poză 6" />
+      <img src="media/album2/IMG_20250601_174505_edit_653793478870028.jpg" alt="Poză 7" />
+      <img src="media/album2/IMG_20250601_173548.jpg" alt="Poză 8" />
+      <img src="media/album2/IMG_20250601_172344.jpg" alt="Poză 9" />
+      <img src="media/album2/IMG_20250531_223834.jpg" alt="Poză 10" />
+      <img src="media/album2/IMG_20250601_181429_edit_653992521092914.jpg" alt="Poză 11" />
+      <img src="media/album2/IMG_20250615_202643.jpg" alt="Poză 12" />
+      <img src="media/album2/IMG_20250629_163354.jpg" alt="Poză 13" />
     </section>
   </main>
 
-  <!-- Chenare mutabile -->
   <div class="movable-box left-box" id="leftBox" contenteditable="true" spellcheck="false">
-    Pașii mă poartă departe,
-În lume largă, nesfârșită,
-Fiecare drum e o șoaptă,
-O poveste neîntreruptă.
-
-<br>
+    Pașii mă poartă departe,<br>
+    În lume largă, nesfârșită,<br>
+    Fiecare drum e o șoaptă,<br>
+    O poveste neîntreruptă.
   </div>
 
   <div class="movable-box right-box" id="rightBox" contenteditable="true" spellcheck="false">
-    Călătoria-n suflet începe
-Cu un pas mic, dar hotărât.
-Lumea întreagă te așteaptă,
-Să-ți deschizi drumul neatins.
+    Călătoria-n suflet începe<br>
+    Cu un pas mic, dar hotărât.<br>
+    Lumea întreagă te așteaptă,<br>
+    Să-ți deschizi drumul neatins.
   </div>
 
-  <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
     <span class="close-btn" id="closeBtn">&times;</span>
     <span class="prev-btn" id="prevBtn">&#10094;</span>
     <img id="lightboxImg" src="" alt="Imagine mărită" />
+    <p id="captionText"></p>
     <span class="next-btn" id="nextBtn">&#10095;</span>
   </div>
 
   <script>
-    // Gallery Lightbox
     const images = document.querySelectorAll('.gallery img');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightboxImg');
+    const captionText = document.getElementById('captionText');
     const closeBtn = document.getElementById('closeBtn');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
+
+    const captions = [
+      "1. Călătoria e singurul lucru care te face mai bogat.",
+      "2. Natura nu grăbește nimic, totul se împlinește la timp.",
+      "3. Dragostea e cel mai frumos loc în care poți ajunge.",
+      "4. Fiecare pas e o poveste scrisă pe pământ.",
+      "5. Unde nu ajunge cuvântul, ajunge privirea naturii.",
+      "6. Drumul spre tine trece prin lumea largă.",
+      "7. Iubirea e busola celor care rătăcesc frumos.",
+      "8. Răsăritul e o promisiune din fiecare dimineață.",
+      "9. Un apus e un rămas bun spus cu tandrețe.",
+      "10. Cele mai frumoase locuri sunt cele în care ai râs cu inima.",
+      "11. În tăcerea muntelui se aude inima naturii.",
+      "12. Călătoria e răspunsul, chiar dacă nu întrebi nimic.",
+      "13. Stelele ne privesc din tăcerea eternă."
+    ];
 
     let currentIndex = 0;
 
     function showLightbox(index) {
       currentIndex = index;
-      lightboxImg.src = images[currentIndex].src;
+      lightboxImg.src = images[index].src;
+      captionText.textContent = captions[index];
       lightbox.style.display = 'flex';
-    }
-
-    function closeLightbox() {
-      lightbox.style.display = 'none';
-    }
-
-    function showNext() {
-      currentIndex = (currentIndex + 1) % images.length;
-      lightboxImg.src = images[currentIndex].src;
-    }
-
-    function showPrev() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      lightboxImg.src = images[currentIndex].src;
     }
 
     images.forEach((img, index) => {
       img.addEventListener('click', () => showLightbox(index));
     });
 
-    closeBtn.addEventListener('click', closeLightbox);
-    nextBtn.addEventListener('click', showNext);
-    prevBtn.addEventListener('click', showPrev);
-
-    // Închide lightbox cu ESC și navighează cu săgeți
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLightbox();
-      if (e.key === 'ArrowRight') showNext();
-      if (e.key === 'ArrowLeft') showPrev();
+    closeBtn.addEventListener('click', () => {
+      lightbox.style.display = 'none';
     });
 
-    // Funcționalitate mutare chenare (drag and drop)
-    function dragElement(elmnt) {
-      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showLightbox(currentIndex);
+    });
 
-      elmnt.style.position = "fixed";
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % images.length;
+      showLightbox(currentIndex);
+    });
 
-      elmnt.onmousedown = dragMouseDown;
-
-      function dragMouseDown(e) {
-        e = e || window.event;
-        e.preventDefault();
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        document.onmouseup = closeDragElement;
-        document.onmousemove = elementDrag;
-        elmnt.style.cursor = "grabbing";
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.style.display = 'none';
       }
-
-      function elementDrag(e) {
-        e = e || window.event;
-        e.preventDefault();
-        pos1 = pos3 - e.clientX;
-        pos2 = pos4 - e.clientY;
-        pos3 = e.clientX;
-        pos4 = e.clientY;
-        let top = elmnt.offsetTop - pos2;
-        let left = elmnt.offsetLeft - pos1;
-
-        // Limite ca să nu iasă din fereastră
-        const minLeft = 0;
-        const minTop = 0;
-        const maxLeft = window.innerWidth - elmnt.offsetWidth;
-        const maxTop = window.innerHeight - elmnt.offsetHeight;
-
-        if(left < minLeft) left = minLeft;
-        if(top < minTop) top = minTop;
-        if(left > maxLeft) left = maxLeft;
-        if(top > maxTop) top = maxTop;
-
-        elmnt.style.top = top + "px";
-        elmnt.style.left = left + "px";
-      }
-
-      function closeDragElement() {
-        document.onmouseup = null;
-        document.onmousemove = null;
-        elmnt.style.cursor = "grab";
-      }
-    }
-
-    dragElement(document.getElementById("leftBox"));
-    dragElement(document.getElementById("rightBox"));
+    });
   </script>
 </body>
 </html>
