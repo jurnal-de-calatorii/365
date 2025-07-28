@@ -159,6 +159,26 @@
 
     .prev-btn { left: 20px; }
     .next-btn { right: 20px; }
+
+    /* ✅ Chenar cu GIF */
+    .gif-frame {
+      position: fixed;
+      bottom: 500px;
+      right: 1330px;
+      border: 4px solid #ffd54f;
+      border-radius: 12px;
+      padding: 5px4
+      background-color: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 15px #ffd54f;
+      z-index: 1500;
+    }
+
+    .gif-frame img {
+      width: 160px;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
@@ -199,6 +219,11 @@
     <span class="next-btn" id="nextBtn">&#10095;</span>
   </div>
 
+  <!-- ✅ GIF animat -->
+  <div class="gif-frame">
+    <img src="media/original-0e6fdb1ed026c5d0c908737a6dbfdb42.gif" alt="GIF decorativ">
+  </div>
+
   <script>
     const images = document.querySelectorAll('.gallery img');
     const lightbox = document.getElementById('lightbox');
@@ -208,23 +233,23 @@
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
 
-   const captions = [
-  "„Călătoria de o mie de mile începe cu un singur pas.” – Lao Tzu",
-  "„Iubirea este singura forță care transformă un dușman într-un prieten.” – Martin Luther King Jr.",
-  "„În mijlocul naturii, descoperim simplitatea sufletului.”",
-  "„Drumurile grele duc adesea la destinații minunate.”",
-  "„Cel care se plimbă cu natura, merge cu sufletul deschis.”",
-  "„Acolo unde este dragoste, nici distanța nu mai contează.”",
-  "„Viața este o aventură îndrăzneață sau nimic.” – Helen Keller",
-  "„Cei care iubesc natura găsesc frumusețe peste tot.” – Laura Ingalls Wilder",
-  "„Călătoriile sunt cele care ne fac mai bogați sufletește.”",
-  "„Un peisaj frumos este o poezie fără cuvinte.”",
-  "„Fiecare drum parcurs împreună este o poveste de iubire.”",
-  "„A iubi și a fi iubit este ca o rază de soare într-o zi mohorâtă.”",
-  "„Natura nu se grăbește, totul se întâmplă la timp.” – Lao Tzu",
-  "„Cei care nu se pierd niciodată, nu vor descoperi niciodată ceva nou.”",
-  "„Iubirea adevărată nu are nevoie de destinații, ci doar de compania potrivită.”"
-];
+    const captions = [
+      "„Călătoria de o mie de mile începe cu un singur pas.” – Lao Tzu",
+      "„Iubirea este singura forță care transformă un dușman într-un prieten.” – Martin Luther King Jr.",
+      "„În mijlocul naturii, descoperim simplitatea sufletului.”",
+      "„Drumurile grele duc adesea la destinații minunate.”",
+      "„Cel care se plimbă cu natura, merge cu sufletul deschis.”",
+      "„Acolo unde este dragoste, nici distanța nu mai contează.”",
+      "„Viața este o aventură îndrăzneață sau nimic.” – Helen Keller",
+      "„Cei care iubesc natura găsesc frumusețe peste tot.” – Laura Ingalls Wilder",
+      "„Călătoriile sunt cele care ne fac mai bogați sufletește.”",
+      "„Un peisaj frumos este o poezie fără cuvinte.”",
+      "„Fiecare drum parcurs împreună este o poveste de iubire.”",
+      "„A iubi și a fi iubit este ca o rază de soare într-o zi mohorâtă.”",
+      "„Natura nu se grăbește, totul se întâmplă la timp.” – Lao Tzu",
+      "„Cei care nu se pierd niciodată, nu vor descoperi niciodată ceva nou.”",
+      "„Iubirea adevărată nu are nevoie de destinații, ci doar de compania potrivită.”"
+    ];
 
     let currentIndex = 0;
 

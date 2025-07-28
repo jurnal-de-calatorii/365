@@ -22,7 +22,7 @@
       position: fixed;
       top: 0; left: 0;
       width: 100vw; height: 100vh;
-      background-color: rgba(0,0,0,0.5); /* negru 50% opac */
+      background-color: rgba(0,0,0,0.5);
       z-index: 0;
     }
 
@@ -36,7 +36,6 @@
       box-sizing: border-box;
     }
 
-    /* Header simplu fără fundal */
     header {
       margin-bottom: 20px;
       color: white;
@@ -46,7 +45,6 @@
       text-align: center;
     }
 
-    /* Link Du-mă înapoi stilizat ca la Album 3 */
     .back-link {
       display: inline-block;
       text-decoration: none;
@@ -82,7 +80,6 @@
       box-shadow: 0 0 15px rgba(0,123,255,0.8);
     }
 
-    /* Lightbox styles */
     .lightbox {
       position: fixed;
       top: 0; left: 0;
@@ -135,6 +132,25 @@
       z-index: 10001;
     }
 
+    /* ✅ Chenar GIF */
+    .gif-frame {
+      position: fixed;
+      bottom: 600px;
+      right: 1350px;
+      border: 4px solid #ffd54f;
+      border-radius: 12px;
+      padding: 5px;
+      background-color: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 0 15px #ffd54f;
+      z-index: 1500;
+    }
+
+    .gif-frame img {
+      width: 150px;
+      height: auto;
+      display: block;
+      border-radius: 8px;
+    }
   </style>
 </head>
 <body>
@@ -151,18 +167,23 @@
         <img src="media/album5/IMG_20250531_191420.jpg" alt="Poză 3" />
         <img src="media/album5/IMG_20250531_192909.jpg" alt="Poză 4" />
         <img src="media/album5/IMG_20250622_210732.jpg" alt="Poză 5" />
-<img src="media/album5/IMG_20250713_150210.jpg" alt="Poză 6" />
-<img src="media/album5/IMG_20250713_150248.jpg" alt="Poză 7" />
-<img src="media/album5/IMG_20250713_194135.jpg" alt="Poză 8" />
-<img src="media/album5/IMG_20250713_194148.jpg" alt="Poză 9" />
-<img src="media/album5/IMG_20250713_194207.jpg" alt="Poză 10" />
-<img src="media/album5/IMG_20250713_194225.jpg" alt="Poză 11" />
-<img src="media/album5/IMG_20250713_194815.jpg" alt="Poză 12" />
-<img src="media/album5/IMG_20250713_195122.jpg" alt="Poză 13" />
-<img src="media/album5/IMG_20250713_195039.jpg" alt="Poză 14" />
-<img src="media/album5/IMG_20250713_194153.jpg" alt="Poză 15" />
+        <img src="media/album5/IMG_20250713_150210.jpg" alt="Poză 6" />
+        <img src="media/album5/IMG_20250713_150248.jpg" alt="Poză 7" />
+        <img src="media/album5/IMG_20250713_194135.jpg" alt="Poză 8" />
+        <img src="media/album5/IMG_20250713_194148.jpg" alt="Poză 9" />
+        <img src="media/album5/IMG_20250713_194207.jpg" alt="Poză 10" />
+        <img src="media/album5/IMG_20250713_194225.jpg" alt="Poză 11" />
+        <img src="media/album5/IMG_20250713_194815.jpg" alt="Poză 12" />
+        <img src="media/album5/IMG_20250713_195122.jpg" alt="Poză 13" />
+        <img src="media/album5/IMG_20250713_195039.jpg" alt="Poză 14" />
+        <img src="media/album5/IMG_20250713_194153.jpg" alt="Poză 15" />
       </section>
     </main>
+  </div>
+
+  <!-- GIF animat adăugat -->
+  <div class="gif-frame">
+    <img src="media/5eeea355389655.59822ff824b72.gif" alt="GIF decorativ">
   </div>
 
   <!-- Lightbox -->
