@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ro">
 <head>
@@ -96,6 +95,42 @@
       width: 100%;
       box-sizing: border-box;
       text-align: center;
+    }
+
+    /* Culoare specifică pentru fiecare buton */
+    .album-button:nth-child(1) {
+      background: #007BFF; /* albastru */
+      border: 2px solid #0056b3;
+    }
+
+    .album-button:nth-child(2) {
+      background: #28a745; /* verde */
+      border: 2px solid #218838;
+    }
+
+    .album-button:nth-child(3) {
+      background: #add8e6; /* albastru deschis */
+      border: 2px solid #87ceeb;
+    }
+
+    .album-button:nth-child(4) {
+      background: #90ee90; /* verde deschis */
+      border: 2px solid #8fbc8f;
+    }
+
+    .album-button:nth-child(5) {
+      background: #800080; /* mov */
+      border: 2px solid #6a006a;
+    }
+
+    .album-button:nth-child(6) {
+      background: #8b4513; /* maro */
+      border: 2px solid #6b3e26;
+    }
+
+    .album-button:nth-child(7) {
+      background: #ffa500; /* portocaliu deschis */
+      border: 2px solid #e59400;
     }
 
     .album-button:hover {
@@ -216,8 +251,8 @@
     <a href="album3.html" class="album-button">Prin pași tăcuți spre paradis</a>
     <a href="album4.html" class="album-button">Cu sufletul mereu în dans</a>
     <a href="album5.html" class="album-button">Așa se naște-un „pentru totdeauna”</a>
-<a href="album6.html" class="album-button">Pe urme calde de emotii vii</a>
-<a href="album7.html" class="album-button">Sub stele ce nu mor nicicand</a>
+    <a href="album6.html" class="album-button">Pe urme calde de emotii vii</a>
+    <a href="album7.html" class="album-button">Sub stele ce nu mor nicicand</a>
   </main>
 
   <div id="gameArea"></div>
@@ -367,13 +402,12 @@
       const now = new Date();
       const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
       let dateString = now.toLocaleDateString('ro-RO', options);
-      // Capitalize first letter
       dateString = dateString.charAt(0).toUpperCase() + dateString.slice(1);
       dateBox.textContent = dateString;
     }
 
     updateDate();
-    setInterval(updateDate, 60 * 1000); // actualizează la fiecare minut
+    setInterval(updateDate, 60 * 1000);
 
   </script>
 </body>
