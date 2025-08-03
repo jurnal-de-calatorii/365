@@ -78,19 +78,20 @@
     }
 
     .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 15px;
+      padding: 0 20px;
     }
 
     .gallery img {
-      width: 250px;
+      width: 100%;
       height: auto;
       cursor: pointer;
       border-radius: 8px;
       transition: transform 0.2s;
       box-shadow: 0 0 8px rgba(0,0,0,0.7);
+      object-fit: cover;
     }
 
     .gallery img:hover {
@@ -194,19 +195,19 @@
       <p>Se-ascunde-o clipă de lumină.</p>
     </div>
     <section class="gallery">
-      <img src="media/album2/20241026_170015.jpg" alt="Poză 1" />
-      <img src="media/album2/20241026_170726.jpg" alt="Poză 2" />
-      <img src="media/album2/20241026_172532.jpg" alt="Poză 3" />
-      <img src="media/album2/20241026_173923.jpg" alt="Poză 4" />
-      <img src="media/album2/20241026_174251.jpg" alt="Poză 5" />
-      <img src="media/album2/IMG_20250601_174054.jpg" alt="Poză 6" />
-      <img src="media/album2/IMG_20250601_174505_edit_653793478870028.jpg" alt="Poză 7" />
-      <img src="media/album2/IMG_20250601_173548.jpg" alt="Poză 8" />
-      <img src="media/album2/IMG_20250601_172344.jpg" alt="Poză 9" />
-      <img src="media/album2/IMG_20250531_223834.jpg" alt="Poză 10" />
-      <img src="media/album2/IMG_20250601_181429_edit_653992521092914.jpg" alt="Poză 11" />
-      <img src="media/album2/IMG_20250615_202643.jpg" alt="Poză 12" />
-      <img src="media/album2/IMG_20250629_163354.jpg" alt="Poză 13" />
+      <img src="media/album2/20241026_170015.jpg" alt="Poză 1" loading="lazy" />
+      <img src="media/album2/20241026_170726.jpg" alt="Poză 2" loading="lazy" />
+      <img src="media/album2/20241026_172532.jpg" alt="Poză 3" loading="lazy" />
+      <img src="media/album2/20241026_173923.jpg" alt="Poză 4" loading="lazy" />
+      <img src="media/album2/20241026_174251.jpg" alt="Poză 5" loading="lazy" />
+      <img src="media/album2/IMG_20250601_174054.jpg" alt="Poză 6" loading="lazy" />
+      <img src="media/album2/IMG_20250601_174505_edit_653793478870028.jpg" alt="Poză 7" loading="lazy" />
+      <img src="media/album2/IMG_20250601_173548.jpg" alt="Poză 8" loading="lazy" />
+      <img src="media/album2/IMG_20250601_172344.jpg" alt="Poză 9" loading="lazy" />
+      <img src="media/album2/IMG_20250531_223834.jpg" alt="Poză 10" loading="lazy" />
+      <img src="media/album2/IMG_20250601_181429_edit_653992521092914.jpg" alt="Poză 11" loading="lazy" />
+      <img src="media/album2/IMG_20250615_202643.jpg" alt="Poză 12" loading="lazy" />
+      <img src="media/album2/IMG_20250629_163354.jpg" alt="Poză 13" loading="lazy" />
     </section>
   </main>
 
